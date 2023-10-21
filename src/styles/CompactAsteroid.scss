@@ -1,0 +1,45 @@
+.compact-asteroid {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+
+
+    .left {
+        padding: .5rem;
+        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .date {
+            font-size: .6rem;
+            display: flex;
+            justify-content: end;
+            border-bottom: 1px solid grey;
+        }
+
+        .hazard-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            height: 90%;
+
+            p {
+                font-size: 1rem;
+
+            }
+
+            svg {
+                font-size: 2rem;
+            }
+        }
+    }
+}
