@@ -25,6 +25,7 @@ const Home = () => {
               distances.
             </p>
           </article>
+
           <a href="#date-picker-container">Start Exploring!</a>
         </section>
       </div>

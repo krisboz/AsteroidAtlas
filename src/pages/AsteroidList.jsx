@@ -3,35 +3,6 @@ import { useParams } from "react-router-dom";
 import CompactAsteroid from "../components/CompactAsteroid";
 import "../styles/AsteroidList.scss";
 
-/**
- * 
- * useEffect(() => {
-    fetch('https://api.nasa.gov/neo/rest/v1/feed?start_date=START_DATE&end_date=END_DATE&api_key=API_KEY')
-      .then(response => response.json())
-      .then(data => {
-        setAsteroids(data.near_earth_objects);
-        setLoading(false);
-      })
-      .catch(err => {
-        setError(err);
-        setLoading(false);
-      });
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
-
-  // Render the asteroid data
-  return (
-    <div>
-  
- */
-
 const AsteroidList = () => {
   const { startdate, enddate } = useParams();
   const [loading, setLoading] = useState(true);
@@ -77,12 +48,11 @@ const AsteroidList = () => {
                   .kilometers_per_hour
               )}
               date={date}
+              id={asteroid.id}
             />
           );
         });
       })}
-
-      <CompactAsteroid />
     </main>
   );
 };

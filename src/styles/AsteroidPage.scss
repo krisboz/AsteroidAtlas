@@ -1,0 +1,85 @@
+/*
+      <main className="asteroid-page">
+        <section className="name-plate">
+          <h1>{asteroid.name}</h1>
+          <p className="id">#{id}</p>
+        </section>
+        <section className="basic-info">
+          <article className="velocity">
+            <p>
+              <BsSpeedometer2 /> {asteroid.velocity}
+            </p>
+          </article>
+          <article className="hazard">
+            <p>{!asteroid.hazard && "Not"} Hazardous</p>
+          </article>
+          <article className="miss-distance">
+            <p>
+              <MdCallMissed /> Miss Distance: {asteroid.missDistance}
+            </p>
+          </article>
+        </section>
+      </main>
+*/
+
+.asteroid-page {
+    border: 1px solid red;
+    margin: 3rem;
+    padding: 1rem;
+
+    .name-plate {
+        border: 1px solid blue;
+        padding: 1rem 0 1rem .5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        justify-content: center;
+
+        h1 {
+            font-size: 2.3rem;
+        }
+
+        .id {
+            padding: 0 0 0 .5rem;
+        }
+    }
+
+    section {
+        padding: 1rem;
+        font-size: 1.2rem;
+
+
+        h2 {
+            padding: 1rem;
+        }
+    }
+
+    .basic-info {
+        border: 1px solid white;
+
+
+        .basic-info-data {
+            display: flex;
+            justify-content: space-evenly;
+
+            font-weight: 300;
+
+            article>p {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: .5rem;
+            }
+        }
+
+
+    }
+
+    .size {
+        .size-data {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+    }
+}

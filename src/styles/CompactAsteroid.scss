@@ -1,45 +1,48 @@
+@import "./partials/cta_button";
+
 .compact-asteroid {
-    width: 50%;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+    border: 1px solid white;
 
 
-    .left {
-        padding: .5rem;
-        gap: 1rem;
+    .date-container {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .right {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        justify-content: start;
+        padding: 0 1rem;
+        border-bottom: 1px solid white;
 
         .date {
-            font-size: .6rem;
-            display: flex;
-            justify-content: end;
-            border-bottom: 1px solid grey;
-        }
-
-        .hazard-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            height: 90%;
-
-            p {
-                font-size: 1rem;
-
-            }
-
-            svg {
-                font-size: 2rem;
-            }
+            font-size: .7rem;
         }
     }
+
+    .asteroid-data {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: .5rem;
+        width: 100%;
+        padding: 0 2rem;
+
+        p {
+            padding-left: 1rem;
+        }
+
+        .is-hazard {
+            color: rgb(252, 23, 23);
+        }
+
+        .is-safe {
+            color: rgb(0, 255, 0);
+        }
+    }
+
+    .btn-container {
+        padding: 1rem 0;
+    }
+
 }
