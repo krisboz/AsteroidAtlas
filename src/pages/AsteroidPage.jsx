@@ -6,6 +6,7 @@ import { MdCallMissed } from "react-icons/md";
 import parseAsteroidData from "../helpers/parseAsteroidData";
 import SizeComparator from "../components/SizeComparator";
 import parseDiameterForDisplay from "./../helpers/parseDiameterForDisplay";
+import OrbitalData from "../components/OrbitalData";
 const AsteroidPage = () => {
   const { id } = useParams();
   const API_KEY = import.meta.env.VITE_NASA_API_KEY;
@@ -82,6 +83,7 @@ const AsteroidPage = () => {
             }
           />
         </section>
+        <OrbitalData data={asteroid.orbital_data} />
       </main>
     );
   }

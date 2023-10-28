@@ -1,5 +1,6 @@
 import format from "date-fns/format";
 const parseAsteroidData = (data) => {
+  console.log("Unparsed data", data);
   const diameterHelper = (type) => {
     //type - max || min
     return data.estimated_diameter.meters[`estimated_diameter_${type}`];
@@ -25,20 +26,29 @@ const parseAsteroidData = (data) => {
   const orbital_data = {
     first_observed: data.orbital_data.first_observation_date,
     observations_used: data.orbital_data.observations_used,
-    description: data.orbital_data.orbit_class_description,
-    period: data.orbital_data.orbital_period,
-    aphelion: data.orbital_data.aphelion_distance,
-    perihelion_distance: data.orbital_data.perihelion_distance,
-    perihelion_argument: data.orbital_data.perihelion_argument,
-    jupiter_tisserand_invariant: data.orbital_data.jupiter_tisserand_invariant,
-    inclination: data.orbital_data.inclination,
-    eccentricity: data.orbital_data.eccentricity,
-    mean_motion: data.orbital_data.mean_motion,
-    semi_major_axis: data.orbital_data.semi_major_axis,
-    ascending_node_longitude: data.orbital_data.ascending_node_longitude,
-  };
+    description: data.orbital_data.orbit_class.orbit_class_description,
+    range: data.orbital_data.orbit_class.orbit_class_range,
+    type: data.orbital_data.orbit_class.orbit_class_type,
+    period: parseFloat(data.orbital_data.orbital_period),
 
-  console.log(data);
+    for_nerds: {
+      aphelion: parseFloat(data.orbital_data.aphelion_distance),
+      perihelion_distance: parseFloat(data.orbital_data.perihelion_distance),
+      perihelion_argument: parseFloat(data.orbital_data.perihelion_argument),
+      jupiter_tisserand_invariant: parseFloat(
+        data.orbital_data.jupiter_tisserand_invariant
+      ),
+      inclination: parseFloat(data.orbital_data.inclination),
+      eccentricity: parseFloat(data.orbital_data.eccentricity),
+      mean_motion: parseFloat(data.orbital_data.mean_motion),
+      semi_major_axis: parseFloat(data.orbital_data.semi_major_axis),
+      ascending_node_longitude: parseFloat(
+        data.orbital_data.ascending_node_longitude
+      ),
+      epoch: parseFloat(data.orbital_data.epoch_osculation),
+      mean_motion: parseFloat(data.orbital_data.mean_motion),
+    },
+  };
 
   return {
     name,

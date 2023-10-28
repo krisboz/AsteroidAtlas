@@ -9,7 +9,6 @@ import "../styles/SizeComparator.scss";
 const SizeComparator = ({ asteroidSize }) => {
   const fixedAsteroidSize = 300; // 150px
   const scales = calcScale(asteroidSize);
-  console.log(scales);
 
   const returnIcon = (iconType) => {
     const icons = {
