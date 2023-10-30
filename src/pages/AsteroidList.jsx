@@ -18,6 +18,7 @@ const AsteroidList = () => {
     )
       .then((response) => response.json())
       .then((data) => {
+        console.log("ALL DATA", data);
         setAsteroids(data.near_earth_objects);
         setLoading(false);
       })

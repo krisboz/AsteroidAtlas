@@ -7,6 +7,7 @@ import parseAsteroidData from "../helpers/parseAsteroidData";
 import SizeComparator from "../components/SizeComparator";
 import parseDiameterForDisplay from "./../helpers/parseDiameterForDisplay";
 import OrbitalData from "../components/OrbitalData";
+import getOrbitDataArray from "../helpers/getOrbitDataArray";
 const AsteroidPage = () => {
   const { id } = useParams();
   const API_KEY = import.meta.env.VITE_NASA_API_KEY;
@@ -21,6 +22,7 @@ const AsteroidPage = () => {
       .then((response) => response.json())
       .then((data) => {
         setAsteroid(parseAsteroidData(data));
+        getOrbitDataArray(data);
         setLoading(false);
       })
       .catch((err) => {

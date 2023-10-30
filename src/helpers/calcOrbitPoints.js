@@ -1,23 +1,8 @@
-import React from "react";
-import OrbitCanvas from "./OrbitCanvas";
-
-const OrbitVisualizer = ({ data }) => {
-  //data neccessities
-  /**
-   * mean_motion
-   * epoch
-   * eccentricity
-   * semi-major-axis
-   *
-   */
-
-  console.log(data);
-
-  let coordinatesArray = [];
-
-  //1.Calculate Mean Anomaly
+const calcOrbitPoints = (data) => {
+  // 1. Calculate Mean Anomaly
   const mean_anomaly = data.mean_motion * data.epoch;
-  //2 Solve Keplers Equation
+
+  // 2. Solve Kepler's Equation
   const solveKeplersEquation = (mean_anomaly, eccentricity) => {
     let E = mean_anomaly;
     const maxIterations = 150;
@@ -35,34 +20,30 @@ const OrbitVisualizer = ({ data }) => {
     }
     return E;
   };
-  //3. Calculate True Anomaly
+
+  // 3. Calculate True Anomaly
   const calcTrueAnomaly = (eccentricity) => {
+    const E = solveKeplersEquation(mean_anomaly, data.eccentricity);
     const v =
       2 *
       Math.atan(
-        Math.sqrt((1 + eccentricity) / (1 - eccentricity)) *
-          Math.tan(solveKeplersEquation(mean_anomaly, data.eccentricity) / 2)
+        Math.sqrt((1 + eccentricity) / (1 - eccentricity)) * Math.tan(E / 2)
       );
-
-    // Convert the angle from radians to degrees if needed
-    // const νDegrees = ν * (180 / Math.PI);
     return v;
   };
 
-  //4. calculate radius vector
+  // 4. Calculate Radius Vector
   const calcRadiusVector = () => {
-    const r =
-      data.semi_major_axis *
-      (1 -
-        data.eccentricity *
-          Math.cos(solveKeplersEquation(mean_anomaly, data.eccentricity)));
-
+    const E = solveKeplersEquation(mean_anomaly, data.eccentricity);
+    const r = data.semi_major_axis * (1 - data.eccentricity * Math.cos(E));
     return r;
   };
 
+  // Calculate True Anomaly and Radius Vector
   const TRUE_ANOMALY = calcTrueAnomaly(data.eccentricity);
   const RADIUS_VECTOR = calcRadiusVector();
 
+  // Convert Polar to Cartesian Coordinates
   const convertPolarToCartesian = () => {
     const x = RADIUS_VECTOR * Math.cos(TRUE_ANOMALY);
     const y = RADIUS_VECTOR * Math.sin(TRUE_ANOMALY);
@@ -70,12 +51,7 @@ const OrbitVisualizer = ({ data }) => {
   };
 
   const coords = convertPolarToCartesian();
-
-  return (
-    <article className="orbit-visualizer">
-      <OrbitCanvas x={coords.x} y={coords.y} />
-    </article>
-  );
+  return coords;
 };
 
-export default OrbitVisualizer;
+export default calcOrbitPoints;

@@ -4,6 +4,7 @@ import getAsteroidPropertyDescription from "../helpers/getAsteroidPropDescriptio
 import parsePropertyName from "../helpers/parsePropertyName";
 import "../styles/OrbitalData.scss";
 import Collapsible from "react-collapsible";
+import OrbitCanvas from "./OrbitCanvas";
 
 /**
  * 
@@ -23,14 +24,16 @@ import Collapsible from "react-collapsible";
   };
  */
 const OrbitalData = ({ data }) => {
+  console.log("THIS ONE", data);
   const returnOrbitVisualizationData = () => {
     return {
       semi_major_axis: data.for_nerds.semi_major_axis,
-      inclination: data.for_nerds.eccentricity,
+      inclination: data.for_nerds.inclination,
       eccentricity: data.for_nerds.eccentricity,
       ascending_node_longitude: data.for_nerds.ascending_node_longitude,
       jupiter_tisserand_invariant: data.for_nerds.jupiter_tisserand_invariant,
       epoch: data.for_nerds.epoch,
+      mean_motion: data.for_nerds.mean_motion,
     };
   };
   return (
@@ -65,6 +68,8 @@ const OrbitalData = ({ data }) => {
             );
           })}
         </div>
+
+        <OrbitVisualizer data={returnOrbitVisualizationData()} />
       </article>
     </section>
   );
