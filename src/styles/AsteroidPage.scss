@@ -30,7 +30,6 @@
     font-size: 1.2rem;
 
 
-
     h2 {
       padding: 1rem;
       color: $accent-text-color;
@@ -56,9 +55,20 @@
         justify-content: center;
         gap: .5rem;
       }
+
+      .hazard {
+        p {
+          color: rgb(37, 218, 55);
+          font-weight: bold;
+
+        }
+
+        .danger {
+          color: red;
+        }
+      }
+
     }
-
-
   }
 
   .size {
@@ -68,6 +78,10 @@
       display: flex;
       align-items: center;
       justify-content: space-evenly;
+
+      .avg-size-val {
+        color: $accent-text-color;
+      }
     }
   }
 }

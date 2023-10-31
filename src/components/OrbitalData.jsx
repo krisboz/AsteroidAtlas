@@ -48,9 +48,15 @@ const OrbitalData = ({ data }) => {
         </div>
 
         <div className="properties">
-          {Object.entries(data.for_nerds).map((el) => {
+          {Object.entries(data.for_nerds).map((el, i) => {
             return (
-              <Collapsible trigger={`${parsePropertyName(el[0])}: ${el[1]}`}>
+              <Collapsible
+                trigger={[
+                  `${parsePropertyName(el[0])}: `,
+                  <span className="collapsible-test">{el[1]}</span>,
+                ]}
+                key={i}
+              >
                 <p className="coll-desc">
                   {getAsteroidPropertyDescription(el[0])}
                 </p>

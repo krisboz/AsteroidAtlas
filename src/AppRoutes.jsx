@@ -10,7 +10,7 @@ const AppRoutes = () => {
         path="/asteroidlist/:startdate/:enddate"
         element={<AsteroidList />}
       />
-      <Route path="/asteroid/:id" element={<AsteroidPage />} />
+      <Route path="/asteroid/:id/:date" element={<AsteroidPage />} />
     </Routes>
   );
 };

@@ -1,14 +1,13 @@
 import format from "date-fns/format";
-const parseAsteroidData = (data) => {
+const parseAsteroidData = (data, date) => {
   console.log("Unparsed data", data);
   const diameterHelper = (type) => {
     //type - max || min
     return data.estimated_diameter.meters[`estimated_diameter_${type}`];
   };
-  const today = format(new Date(), "yyyy-MM-dd");
   const name = data.name;
   const approach_data = data.close_approach_data.filter(
-    (el) => el.close_approach_date === today
+    (el) => el.close_approach_date === date
   )[0];
 
   const velocity = approach_data.relative_velocity.kilometers_per_hour;
@@ -16,10 +15,7 @@ const parseAsteroidData = (data) => {
   const diameter_min = diameterHelper("min");
   const diameter_max = diameterHelper("max");
   const hazardous = data.is_potentially_hazardous_asteroid;
-  const missDistance = `${parseInt(
-    approach_data.miss_distance.kilometers,
-    10
-  )} km`;
+  const missDistance = parseInt(approach_data.miss_distance.kilometers, 10);
 
   const orbiting = approach_data.orbiting_body;
   const h = data.absolute_magnitude_h;

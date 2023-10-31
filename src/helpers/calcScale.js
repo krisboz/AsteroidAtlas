@@ -6,17 +6,20 @@ const calcScale = (asteroidSize) => {
   const humanSize = 1.8;
   const whaleSize = 18.3;
   const burjSize = 828;
+  const eiffelSize = 300;
 
   const airplane = airplaneSize / asteroidSize;
   const human = humanSize / asteroidSize;
   const whale = whaleSize / asteroidSize;
   const burj = burjSize / asteroidSize;
+  const eiffel = eiffelSize / asteroidSize;
 
   return {
     airplane,
     human,
     whale,
     burj,
+    eiffel,
   };
 };
 

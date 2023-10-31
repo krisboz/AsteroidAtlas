@@ -9,8 +9,11 @@ import parseDiameterForDisplay from "./../helpers/parseDiameterForDisplay";
 import OrbitalData from "../components/OrbitalData";
 import getOrbitDataArray from "../helpers/getOrbitDataArray";
 import LoadingAnim from "../components/LoadingAnim";
+import CountUp from "react-countup";
+
 const AsteroidPage = () => {
-  const { id } = useParams();
+  const { id, date } = useParams();
+  console.log(date);
   const API_KEY = import.meta.env.VITE_NASA_API_KEY;
   const API_LINK = `https://api.nasa.gov/neo/rest/v1/neo/${id}?api_key=${API_KEY}`;
 
@@ -22,7 +25,7 @@ const AsteroidPage = () => {
     fetch(API_LINK)
       .then((response) => response.json())
       .then((data) => {
-        setAsteroid(parseAsteroidData(data));
+        setAsteroid(parseAsteroidData(data, date));
         getOrbitDataArray(data);
         setLoading(false);
       })
@@ -52,15 +55,22 @@ const AsteroidPage = () => {
           <div className="basic-info-data">
             <article className="velocity">
               <p>
-                <BsSpeedometer2 /> {Math.floor(asteroid.velocity)} km/h
+                <BsSpeedometer2 />{" "}
+                <CountUp end={asteroid.velocity} delay={0} suffix=" km/h" />
               </p>
             </article>
             <article className="hazard">
-              <p>{!asteroid.hazard && "Not"} Hazardous</p>
+              <p>{!asteroid.hazard ? "Safe" : "Hazardous"}</p>
             </article>
             <article className="miss-distance">
               <p>
-                <MdCallMissed /> Miss Distance: {asteroid.missDistance}
+                <MdCallMissed /> Miss By:{" "}
+                <CountUp
+                  end={asteroid.missDistance}
+                  delay={0}
+                  suffix=" km"
+                  duration={5}
+                />
               </p>
             </article>
           </div>
@@ -68,16 +78,18 @@ const AsteroidPage = () => {
         <section className="size">
           <h2>Size</h2>
           <article className="size-data">
-            <p>⌀-min {parseDiameterForDisplay(asteroid.diameter_min)}</p>
+            <p>⌀-min: {parseDiameterForDisplay(asteroid.diameter_min)}</p>
             <p>
-              ⌀-avg{" "}
-              {parseDiameterForDisplay(
-                (parseFloat(asteroid.diameter_min) +
-                  parseFloat(asteroid.diameter_max)) /
-                  2
-              )}
+              ⌀-avg:{" "}
+              <span className="avg-size-val">
+                {parseDiameterForDisplay(
+                  (parseFloat(asteroid.diameter_min) +
+                    parseFloat(asteroid.diameter_max)) /
+                    2
+                )}
+              </span>
             </p>
-            <p>⌀-max {parseDiameterForDisplay(asteroid.diameter_max)}</p>
+            <p>⌀-max: {parseDiameterForDisplay(asteroid.diameter_max)}</p>
           </article>
           <h2>Compare the Asteroid Size</h2>
           <p>

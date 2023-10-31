@@ -32,7 +32,7 @@ const CompactAsteroid = ({ name, speed, date, hazard, id }) => {
         </p>
       </div>
       <div className="btn-container">
-        <Link to={`/asteroid/${id}`} className="cta-button">
+        <Link to={`/asteroid/${id}/${date}`} className="cta-button">
           View Details
         </Link>
       </div>
