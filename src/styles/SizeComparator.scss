@@ -1,7 +1,43 @@
+@import "./partials/colors";
+
+.selection-container {
+    background-color: $background_color;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 2rem 0;
+
+    select {
+        background-color: $background_color;
+        padding: .3rem .9rem;
+        color: white;
+        cursor: pointer;
+
+
+        option {
+            background-color: $background_color;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    }
+
+    select::after {
+        content: "";
+        width: 0.8em;
+        height: 0.5em;
+        background-color: var(--select-arrow);
+        clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    }
+}
+
 .comparer {
     display: flex;
     align-items: start;
-    border: 1px solid blue;
     justify-content: space-evenly;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
     overflow: hidden;
+    background: none;
+
 }

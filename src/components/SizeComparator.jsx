@@ -75,12 +75,8 @@ const SizeComparator = ({ asteroidSize }) => {
   const handleComparisonChange = (event) => setComparedTo(event.target.value);
   return (
     <div>
-      <h2>Compare the Asteroid Size</h2>
-      <p>
-        Help visualize how big the asteroid is, the app uses the calculated
-        average diameter for comparisons
-      </p>
       <div className="selection-container">
+        <h3>Click to select what to compare the asteroid to:</h3>
         <select onChange={handleComparisonChange} value={comparedTo}>
           <option value="human">Human</option>
           <option value="airplane">Airplane</option>

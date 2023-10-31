@@ -8,6 +8,7 @@ import SizeComparator from "../components/SizeComparator";
 import parseDiameterForDisplay from "./../helpers/parseDiameterForDisplay";
 import OrbitalData from "../components/OrbitalData";
 import getOrbitDataArray from "../helpers/getOrbitDataArray";
+import LoadingAnim from "../components/LoadingAnim";
 const AsteroidPage = () => {
   const { id } = useParams();
   const API_KEY = import.meta.env.VITE_NASA_API_KEY;
@@ -32,7 +33,7 @@ const AsteroidPage = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading</div>;
+    return <LoadingAnim />;
   }
 
   if (error) {
@@ -51,7 +52,7 @@ const AsteroidPage = () => {
           <div className="basic-info-data">
             <article className="velocity">
               <p>
-                <BsSpeedometer2 /> {asteroid.velocity}
+                <BsSpeedometer2 /> {Math.floor(asteroid.velocity)} km/h
               </p>
             </article>
             <article className="hazard">
@@ -78,13 +79,18 @@ const AsteroidPage = () => {
             </p>
             <p>⌀-max {parseDiameterForDisplay(asteroid.diameter_max)}</p>
           </article>
-          <SizeComparator
-            asteroidSize={
-              parseFloat(asteroid.diameter_min) +
-              parseFloat(asteroid.diameter_max) / 2
-            }
-          />
+          <h2>Compare the Asteroid Size</h2>
+          <p>
+            Help visualize how big the asteroid is, the app uses the calculated
+            average diameter for comparisons
+          </p>
         </section>
+        <SizeComparator
+          asteroidSize={
+            parseFloat(asteroid.diameter_min) +
+            parseFloat(asteroid.diameter_max) / 2
+          }
+        />
         <OrbitalData data={asteroid.orbital_data} />
       </main>
     );

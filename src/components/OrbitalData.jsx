@@ -25,17 +25,7 @@ import OrbitCanvas from "./OrbitCanvas";
  */
 const OrbitalData = ({ data }) => {
   console.log("THIS ONE", data);
-  const returnOrbitVisualizationData = () => {
-    return {
-      semi_major_axis: data.for_nerds.semi_major_axis,
-      inclination: data.for_nerds.inclination,
-      eccentricity: data.for_nerds.eccentricity,
-      ascending_node_longitude: data.for_nerds.ascending_node_longitude,
-      jupiter_tisserand_invariant: data.for_nerds.jupiter_tisserand_invariant,
-      epoch: data.for_nerds.epoch,
-      mean_motion: data.for_nerds.mean_motion,
-    };
-  };
+
   return (
     <section className="orbital-data">
       <h2>Orbital Data</h2>
@@ -68,8 +58,6 @@ const OrbitalData = ({ data }) => {
             );
           })}
         </div>
-
-        <OrbitVisualizer data={returnOrbitVisualizationData()} />
       </article>
     </section>
   );

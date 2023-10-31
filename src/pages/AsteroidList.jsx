@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CompactAsteroid from "../components/CompactAsteroid";
+import LoadingAnim from "../components/LoadingAnim";
 import "../styles/AsteroidList.scss";
 
 const AsteroidList = () => {
@@ -29,7 +30,7 @@ const AsteroidList = () => {
   }, []);
 
   if (loading) {
-    return <div>Loading</div>;
+    return <LoadingAnim />;
   }
   return (
     <main className="asteroid-list">
