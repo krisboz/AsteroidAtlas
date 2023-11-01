@@ -1,9 +1,15 @@
-import React from "react";
+import { useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import "../styles/Home.scss";
 import DatePickerComponent from "../components/DatePicker";
 
 const Home = () => {
+  const [showDatePicker, setShowDatePicker] = useState(false);
+
+  const toggleShowDatePicker = () => {
+    setShowDatePicker(!showDatePicker);
+  };
+
   return (
     <main className="home">
       <div className="hero-container">
@@ -26,11 +32,11 @@ const Home = () => {
             </p>
           </article>
 
-          <a href="#date-picker-container">Start Exploring!</a>
+          <button onClick={toggleShowDatePicker}>Start Exploring!</button>
         </section>
       </div>
 
-      <DatePickerComponent />
+      {showDatePicker && <DatePickerComponent func={toggleShowDatePicker} />}
     </main>
   );
 };

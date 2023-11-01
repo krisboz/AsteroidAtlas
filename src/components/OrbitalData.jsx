@@ -53,11 +53,13 @@ const OrbitalData = ({ data }) => {
               <Collapsible
                 trigger={[
                   `${parsePropertyName(el[0])}: `,
-                  <span className="collapsible-test">{el[1]}</span>,
+                  <span className="collapsible-test">{el[1].toFixed(2)}</span>,
                 ]}
                 key={i}
               >
                 <p className="coll-desc">
+                  Full Value:<span className="collapsible-test"> {el[1]}</span>{" "}
+                  <br></br>
                   {getAsteroidPropertyDescription(el[0])}
                 </p>
               </Collapsible>

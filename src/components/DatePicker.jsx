@@ -4,8 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import "../styles/DatePicker.scss";
 import "react-datepicker/dist/react-datepicker.css";
+import { AiOutlineCloseSquare as Close } from "react-icons/ai";
 
-const DatePickerComponent = () => {
+const DatePickerComponent = ({ func }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
 
@@ -22,6 +23,11 @@ const DatePickerComponent = () => {
 
   return (
     <section id="date-picker-container">
+      <div className="close-btn-cont">
+        <button onClick={func}>
+          <Close />
+        </button>
+      </div>
       <h1>Discover Asteroids on Their Closest Approach to Earth</h1>
       <h3>
         Explore asteroids set to pass nearest to Earth during your selected time
