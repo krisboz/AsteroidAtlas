@@ -10,8 +10,10 @@ const AsteroidList = () => {
   const [error, setError] = useState(null);
   const [asteroids, setAsteroids] = useState(null);
   const API_KEY = import.meta.env.VITE_NASA_API_KEY;
+  console.log("whee da problem", asteroids);
 
   useEffect(() => {
+    setLoading(true);
     fetch(
       `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startdate}&end_date=${
         enddate !== "none" ? enddate : startdate
@@ -27,7 +29,16 @@ const AsteroidList = () => {
         setError(err);
         setLoading(false);
       });
-  }, []);
+  }, [startdate, enddate]);
+
+  if (error) {
+    return (
+      <div>
+        <p>{error.code}</p>
+        <p>{error.message}</p>
+      </div>
+    );
+  }
 
   if (loading) {
     return <LoadingAnim />;

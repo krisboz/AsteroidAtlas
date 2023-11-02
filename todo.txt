@@ -1,10 +1,16 @@
+9. Problemi kad se stavi date range -DONE
+4. Make a ncie animation for the first date picker - DONE
+5. Orbit data add rounded values and in description whole - DONE
+
+
+
 1. Mobile responsiveness
 2. Add rendering to centralized state so it doesnt have to call everytime
 3. Add navbar
 
-4. Make a ncie animation for the first date picker - DONE
-5. Orbit data add rounded values and in description whole - DONE
 5. Make a better date picker
 8. Size comparator - add anchor changing
 6. Optional - add on asteroid list sorting by speed and size
 7. Optional - on list add avg size/diameter
+
+** ADD LEAFLET DESTRUCTION MAP

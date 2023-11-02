@@ -1,7 +1,7 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { useNavigate } from "react-router-dom";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 import "../styles/DatePicker.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import { AiOutlineCloseSquare as Close } from "react-icons/ai";
@@ -9,6 +9,7 @@ import { AiOutlineCloseSquare as Close } from "react-icons/ai";
 const DatePickerComponent = ({ func }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
+  const maxDate = addDays(startDate, 7);
 
   const navigate = useNavigate();
 
@@ -19,6 +20,7 @@ const DatePickerComponent = ({ func }) => {
         endDate ? format(endDate, "yyyy-MM-dd") : "none"
       }`
     );
+    func();
   };
 
   return (
@@ -37,6 +39,7 @@ const DatePickerComponent = ({ func }) => {
         *If the end date is not specified, only asteroids for the start date
         will be shown
       </p>
+      <p>**Max end date is 7 days from the start date</p>
 
       <form className="dates-container" onSubmit={handleSubmit}>
         <div className="date-container">
@@ -64,6 +67,7 @@ const DatePickerComponent = ({ func }) => {
             startDate={startDate}
             endDate={endDate}
             minDate={startDate}
+            maxDate={maxDate}
           />
         </div>
         <button type="submit">Search</button>
