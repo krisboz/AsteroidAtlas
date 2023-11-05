@@ -2,7 +2,7 @@ import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { useNavigate } from "react-router-dom";
 import { format, addDays } from "date-fns";
-import "../styles/DatePicker.scss";
+import "../styles/components/DatePicker.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import { AiOutlineCloseSquare as Close } from "react-icons/ai";
 
@@ -43,7 +43,7 @@ const DatePickerComponent = ({ func }) => {
 
       <form className="dates-container" onSubmit={handleSubmit}>
         <div className="date-container">
-          <label htmlFor="date-start">Start Date</label>
+          <label htmlFor="date-start">Start</label>
           <DatePicker
             name="date-start"
             dateFormat="yyyy/MM/dd"
@@ -57,7 +57,7 @@ const DatePickerComponent = ({ func }) => {
         </div>
 
         <div className="date-container">
-          <label htmlFor="date-end">End Date (optional)</label>
+          <label htmlFor="date-end">End (optional)</label>
           <DatePicker
             name="date-end"
             dateFormat="yyyy/MM/dd"

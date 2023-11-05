@@ -2,7 +2,7 @@ import React from "react";
 import OrbitVisualizer from "./OrbitVisualizer";
 import getAsteroidPropertyDescription from "../helpers/getAsteroidPropDescription";
 import parsePropertyName from "../helpers/parsePropertyName";
-import "../styles/OrbitalData.scss";
+import "../styles/components/OrbitalData.scss";
 import Collapsible from "react-collapsible";
 import OrbitCanvas from "./OrbitCanvas";
 

@@ -1,9 +1,25 @@
-import React from "react";
-import "../styles/CometShower.scss";
-
+import { useEffect } from "react";
+import "../styles/components/CometShower.scss";
+import useScrollStore from "../zustand/useScrollStore";
 const CometShower = () => {
+  const { scrollY, setScrollY } = useScrollStore();
+
+  const handleScroll = () => {
+    setScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
   return (
-    <div className="meteor-shower-container">
+    <div
+      className="meteor-shower-container"
+      style={{ transform: `translate3d(0px, ${-scrollY / 3}px, 0px)` }}
+    >
       <div className="star"></div>
       <div className="meteor-1"></div>
       <div className="meteor-2"></div>

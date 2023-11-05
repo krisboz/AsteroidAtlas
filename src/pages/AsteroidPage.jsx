@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "../styles/AsteroidPage.scss";
+import "../styles/pages/AsteroidPage.scss";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { MdCallMissed } from "react-icons/md";
 import parseAsteroidData from "../helpers/parseAsteroidData";
@@ -10,30 +10,33 @@ import OrbitalData from "../components/OrbitalData";
 import getOrbitDataArray from "../helpers/getOrbitDataArray";
 import LoadingAnim from "../components/LoadingAnim";
 import CountUp from "react-countup";
+import { parse } from "date-fns";
 
 const AsteroidPage = () => {
+  //if the id is there
   const { id, date } = useParams();
-  console.log(date);
-  const API_KEY = import.meta.env.VITE_NASA_API_KEY;
-  const API_LINK = `https://api.nasa.gov/neo/rest/v1/neo/${id}?api_key=${API_KEY}`;
-
   const [asteroid, setAsteroid] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetch(API_LINK)
-      .then((response) => response.json())
-      .then((data) => {
-        setAsteroid(parseAsteroidData(data, date));
-        getOrbitDataArray(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err);
-        setLoading(false);
-      });
-  }, []);
+  if (id) {
+    const API_KEY = import.meta.env.VITE_NASA_API_KEY;
+    const API_LINK = `https://api.nasa.gov/neo/rest/v1/neo/${id}?api_key=${API_KEY}`;
+    useEffect(() => {
+      fetch(API_LINK)
+        .then((response) => response.json())
+        .then((data) => {
+          setAsteroid(parseAsteroidData(data, date));
+          getOrbitDataArray(data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err);
+          setLoading(false);
+        });
+    }, []);
+  } else {
+  }
 
   if (loading) {
     return <LoadingAnim />;
@@ -78,18 +81,33 @@ const AsteroidPage = () => {
         <section className="size">
           <h2>Size</h2>
           <article className="size-data">
-            <p>⌀-min: {parseDiameterForDisplay(asteroid.diameter_min)}</p>
+            <p>
+              ⌀-min: {parseDiameterForDisplay(asteroid.diameter_min).val}
+              {parseDiameterForDisplay(asteroid.diameter_min).unit}
+            </p>
             <p>
               ⌀-avg:{" "}
               <span className="avg-size-val">
-                {parseDiameterForDisplay(
-                  (parseFloat(asteroid.diameter_min) +
-                    parseFloat(asteroid.diameter_max)) /
-                    2
-                )}
+                {
+                  parseDiameterForDisplay(
+                    (parseFloat(asteroid.diameter_min) +
+                      parseFloat(asteroid.diameter_max)) /
+                      2
+                  ).val
+                }
+                {
+                  parseDiameterForDisplay(
+                    (parseFloat(asteroid.diameter_min) +
+                      parseFloat(asteroid.diameter_max)) /
+                      2
+                  ).unit
+                }
               </span>
             </p>
-            <p>⌀-max: {parseDiameterForDisplay(asteroid.diameter_max)}</p>
+            <p>
+              ⌀-max: {parseDiameterForDisplay(asteroid.diameter_max).val}{" "}
+              {parseDiameterForDisplay(asteroid.diameter_max).unit}
+            </p>
           </article>
           <h2>Compare the Asteroid Size</h2>
           <p>

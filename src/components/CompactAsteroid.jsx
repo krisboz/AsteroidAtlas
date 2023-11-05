@@ -1,10 +1,22 @@
 import React from "react";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
-import { Link } from "react-router-dom";
-import "../styles/CompactAsteroid.scss";
+import { MdCallMissed } from "react-icons/md";
+import CountUp from "react-countup";
+import parseDiameterForDisplay from "../helpers/parseDiameterForDisplay";
 
-const CompactAsteroid = ({ name, speed, date, hazard, id }) => {
+import { Link } from "react-router-dom";
+import "../styles/components/CompactAsteroid.scss";
+
+const CompactAsteroid = ({
+  name,
+  speed,
+  date,
+  hazard,
+  id,
+  missDistance,
+  diameter,
+}) => {
   const falseIcon = (
     <span className="false-icon">
       <AiFillCloseCircle />
@@ -25,7 +37,22 @@ const CompactAsteroid = ({ name, speed, date, hazard, id }) => {
       <div className="asteroid-data">
         <h3>{name}</h3>
         <p>
-          <BsSpeedometer2 /> {speed} km/h
+          <BsSpeedometer2 />{" "}
+          <CountUp end={speed} delay={0} suffix=" km/h" duration={2} />
+        </p>
+
+        <p>
+          <MdCallMissed />{" "}
+          <CountUp end={missDistance} delay={0} suffix=" km" duration={2} />
+        </p>
+        <p>
+          ⌀{" "}
+          <CountUp
+            end={parseDiameterForDisplay(diameter).val}
+            delay={0}
+            suffix={parseDiameterForDisplay(diameter).unit}
+            duration={2}
+          />
         </p>
         <p className={hazard ? "is-hazard" : "is-safe"}>
           {hazard ? "Hazardous" : "Safe"} for Earth

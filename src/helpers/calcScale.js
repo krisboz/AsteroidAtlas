@@ -14,12 +14,29 @@ const calcScale = (asteroidSize) => {
   const burj = burjSize / asteroidSize;
   const eiffel = eiffelSize / asteroidSize;
 
+  const asteroidAnchor = {
+    airplane: airplaneSize / asteroidSize,
+    human: humanSize / asteroidSize,
+    whale: whaleSize / asteroidSize,
+    burj: burjSize / asteroidSize,
+    eiffel: eiffelSize / asteroidSize,
+  };
+
+  const comparedAnchor = {
+    airplane: asteroidSize / airplaneSize,
+    human: asteroidSize / humanSize,
+    whale: asteroidSize / whaleSize,
+    burj: asteroidSize / burjSize,
+    eiffel: asteroidSize / eiffelSize,
+  };
+
   return {
     airplane,
     human,
     whale,
     burj,
     eiffel,
+    comparedAnchor,
   };
 };
 

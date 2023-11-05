@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
-import "../styles/Home.scss";
+import "../styles/pages/Home.scss";
 import DatePickerComponent from "../components/DatePicker";
 
 const Home = () => {

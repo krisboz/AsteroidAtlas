@@ -1,11 +1,12 @@
-$n: 15; // 流星數量
-$s: 300; // star數量
+$n: 15; // number of meteors
+$s: 1000; // number of stars
+//translate3d(0px, -34.8262px, 0px)
 
 .meteor-shower-container {
-    height: 100%;
-    width: 100vw;
+    width: 1200px;
     background-image: none;
-    position: fixed;
+    position: absolute;
+    height: 100%;
     top: 0;
     left: 0;
     pointer-events: none;
@@ -16,8 +17,8 @@ $shadow: (
 );
 
 @for $i from 1 through $s {
-    $x: random(1500);
-    $y: random(1000);
+    $x: random(2200);
+    $y: random(3000);
     $shadow: $shadow, ($x+px $y+px #fff) !global;
 }
 
@@ -30,8 +31,8 @@ $shadow: (
 
 @for $i from 1 through $n {
     $v: calc(random(90) + 9); // left
-    $h: calc(random(250) + 50); // top
-    $d: calc(random(70)/10 + 3); // 秒數
+    $h: calc(random(50) + 50); // top
+    $d: calc(random(550)/10 + 3); // seconds
 
     .meteor-#{$i} {
         position: absolute;
@@ -42,7 +43,6 @@ $shadow: (
         transform: rotate(-45deg);
         background-image: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
         animation: meteor $d+s linear infinite;
-        overflow: hidden;
 
         &:before {
             content: "";

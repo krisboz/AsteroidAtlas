@@ -1,0 +1,38 @@
+.asteroid-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 4rem;
+
+    .headings {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
+
+@media (max-width:820px) {
+
+    .asteroid-list {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 3rem .3rem;
+        gap: 4rem;
+
+        .headings {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            h1 {
+                font-size: 1.2rem;
+            }
+
+            h3 {
+                font-size: 1rem;
+            }
+        }
+    }
+}
