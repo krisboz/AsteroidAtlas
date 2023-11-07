@@ -27,7 +27,6 @@ const AsteroidList = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log("raw data", data);
         setAsteroids(data.near_earth_objects);
         addAsteroid(data.near_earth_objects);
         setLoading(false);
@@ -36,8 +35,6 @@ const AsteroidList = () => {
         setError(err);
         setLoading(false);
       });
-
-    console.log("ASTEROID STATE", asteroidsState);
   }, [startdate, enddate]);
 
   if (error) {
@@ -52,6 +49,7 @@ const AsteroidList = () => {
   if (loading) {
     return <LoadingAnim />;
   }
+
   return (
     <main className="asteroid-list">
       <div className="headings">

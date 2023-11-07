@@ -18,7 +18,10 @@ const CometShower = () => {
   return (
     <div
       className="meteor-shower-container"
-      style={{ transform: `translate3d(0px, ${-scrollY / 3}px, 0px)` }}
+      style={{
+        transform: `translate3d(0px, ${-scrollY / 3}px, 0px)`,
+        height: `${document.body.scrollHeight + 500}px`,
+      }}
     >
       <div className="star"></div>
       <div className="meteor-1"></div>

@@ -1,14 +1,17 @@
 $n: 15; // number of meteors
-$s: 1000; // number of stars
+$s: 500; // number of stars
 //translate3d(0px, -34.8262px, 0px)
 
 .meteor-shower-container {
-    width: 100vw;
+    width: 100%;
     background-image: none;
     position: absolute;
     top: 0;
     left: 0;
     pointer-events: none;
+    overflow: hidden;
+    z-index: 5;
+    border: 1px solid red;
 
 }
 
@@ -16,14 +19,16 @@ $shadow: (
 );
 
 @for $i from 1 through $s {
-    $x: random(2200);
-    $y: random(3000);
+    $x: random(1600); //x position of a star
+    $y: random(4000); //x position of a star
     $shadow: $shadow, ($x+px $y+px #fff) !global;
 }
 
+
+//all of the stars are rendered as text shadows of a single div
 .star {
-    width: 1px;
-    height: 1px;
+    width: 2px;
+    height: 2px;
     background: transparent;
     box-shadow: $shadow;
 }
