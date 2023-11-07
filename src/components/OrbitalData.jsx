@@ -43,7 +43,7 @@ const OrbitalData = ({ data }) => {
       </article>
       <article className="nerd-data">
         <div className="nameplate">
-          <h3>Orbital data for nerds</h3>
+          <h3>Detailed Orbital Data</h3>
           <p>click on any of the properties to find out more</p>
         </div>
 

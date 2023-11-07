@@ -2,7 +2,6 @@
 
 
 .asteroid-page {
-  border: 1px solid $accent-text-color;
   margin: 3rem;
   position: relative;
   overflow-x: hidden;
@@ -43,7 +42,6 @@
   }
 
   .basic-info {
-    border: 1px solid white;
     background: rgba(12, 76, 8, 0.54);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(9.3px);
@@ -84,7 +82,6 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(9.3px);
     -webkit-backdrop-filter: blur(9.3px);
-    border: 1px solid rgba(12, 76, 8, 0.3);
 
     .size-data {
       display: flex;

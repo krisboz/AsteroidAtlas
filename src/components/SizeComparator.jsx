@@ -18,9 +18,44 @@ const SizeComparator = ({ asteroidSize }) => {
     setAnchorPoint(event.target.value);
   };
 
+  const returnTransformValue = (scale, spec = null) => {
+    if (
+      (anchorPoint === "asteroid" && comparedTo === "eiffel") ||
+      comparedTo === "burj"
+    ) {
+      return 0;
+    }
+    if (scale >= 3 && scale <= 20) {
+      return 40;
+    } else if (scale >= 20 && scale <= 125) {
+      return 44;
+    } else if (scale > 125) {
+      return 44.5;
+    } else return 0;
+  };
+
+  const returnTransformScaleStyle = (iconType) => {
+    //if we're anchored to asteroid, we get the scale value
+    //of the comparator, else we scale the asteroid
+
+    if (anchorPoint === "asteroid") {
+      if (!iconType) return null;
+      else
+        return `scale(${scales[iconType]}) translateX(${returnTransformValue(
+          scales[iconType]
+        )}%)`;
+    } else {
+      if (iconType) return null;
+      else
+        return `scale(${
+          scales.comparedAnchor[`${comparedTo}`]
+        }) translateX(-${returnTransformValue(
+          scales.comparedAnchor[`${comparedTo}`]
+        )}%)`;
+    }
+  };
+
   const returnIcon = (iconType) => {
-    const transformStyle =
-      anchorPoint !== iconType ? `scale(${scales[iconType]})` : "";
     const icons = {
       human: (
         <svg
@@ -32,7 +67,7 @@ const SizeComparator = ({ asteroidSize }) => {
             fill: "white",
             height: `${fixedAsteroidSize}px`,
             width: `auto`,
-            transform: transformStyle,
+            transform: returnTransformScaleStyle(iconType),
             transition: ".3s ease-in-out",
           }}
         >
@@ -50,7 +85,7 @@ const SizeComparator = ({ asteroidSize }) => {
             fill: "white",
             height: `${fixedAsteroidSize}px`,
             width: `auto`,
-            transform: transformStyle,
+            transform: returnTransformScaleStyle(iconType, "is"),
             transition: ".3s ease-in-out",
           }}
           viewBox="0 0 736 1920"
@@ -123,7 +158,7 @@ const SizeComparator = ({ asteroidSize }) => {
           style={{
             height: `${fixedAsteroidSize}px`,
             width: `${fixedAsteroidSize}px`,
-            transform: transformStyle,
+            transform: returnTransformScaleStyle(iconType),
             transition: ".3s ease-in-out",
           }}
         />
@@ -133,7 +168,7 @@ const SizeComparator = ({ asteroidSize }) => {
           style={{
             height: `auto`,
             width: `${fixedAsteroidSize}px`,
-            transform: transformStyle,
+            transform: returnTransformScaleStyle(iconType),
             transition: ".3s ease-in-out",
           }}
         />
@@ -149,7 +184,7 @@ const SizeComparator = ({ asteroidSize }) => {
             fill: "white",
             height: `${fixedAsteroidSize}px`,
             width: `${fixedAsteroidSize}px`,
-            transform: transformStyle,
+            transform: returnTransformScaleStyle(iconType, "is"),
             transition: ".3s ease-in-out",
           }} // Set the fill property to white
         >
@@ -160,11 +195,6 @@ const SizeComparator = ({ asteroidSize }) => {
 
     return icons[`${iconType}`];
   };
-
-  const asteroidTransformStyle =
-    anchorPoint !== "asteroid"
-      ? `scale(${scales.comparedAnchor[`${anchorPoint}`]})`
-      : null;
 
   return (
     <div>
@@ -185,7 +215,7 @@ const SizeComparator = ({ asteroidSize }) => {
             style={{
               height: `${fixedAsteroidSize}px`,
               width: `${fixedAsteroidSize}px`,
-              transform: asteroidTransformStyle,
+              transform: returnTransformScaleStyle(),
               transition: ".3s ease-in-out",
             }}
           />
@@ -193,25 +223,29 @@ const SizeComparator = ({ asteroidSize }) => {
         <div>{returnIcon(comparedTo)}</div>
       </div>
       <div className="anchors-selector">
+        <h5>Select your anchor</h5>
         <form onChange={handleAnchorChange}>
-          <label for="asteroid">Asteroid</label>
+          <span>
+            <label for="asteroid">ASTEROID</label>
 
-          <input
-            type="radio"
-            id="asteroid"
-            name="selected-anchor"
-            value="asteroid"
-            checked={anchorPoint === "asteroid"}
-          ></input>
-          <label for="compared">{comparedTo}</label>
-
-          <input
-            type="radio"
-            id="compared"
-            name="selected-anchor"
-            checked={anchorPoint !== "asteroid"}
-            value={comparedTo}
-          ></input>
+            <input
+              type="radio"
+              id="asteroid"
+              name="selected-anchor"
+              value="asteroid"
+              checked={anchorPoint === "asteroid"}
+            ></input>
+          </span>
+          <span>
+            <input
+              type="radio"
+              id="compared"
+              name="selected-anchor"
+              checked={anchorPoint !== "asteroid"}
+              value={comparedTo}
+            ></input>
+            <label for="compared">{comparedTo.toUpperCase()}</label>
+          </span>
         </form>
       </div>
     </div>

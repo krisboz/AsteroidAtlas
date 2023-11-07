@@ -3,6 +3,8 @@
 5. Orbit data add rounded values and in description whole - DONE
 7. Clean up CometShower.scss -DONE
 7. Optional - on list add avg size/diameter DONE
+8. Size comparator - add anchor changing -DONE
+
 
 
 
@@ -16,9 +18,8 @@ orbital data doesn't exist in the list views dataset
 4. allow form submission with enter key
 
 5. Make a better date picker
-8. Size comparator - add anchor changing
 6. Optional - add on asteroid list sorting by speed and size
-
+In sizeComparator.scss nest it nicely
 
 MAKE PACKAGE??
 Small script that is a todo extension for vs code that by having a todo.txt in your root
