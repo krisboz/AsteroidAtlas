@@ -6,7 +6,6 @@ $s: 1000; // number of stars
     width: 1200px;
     background-image: none;
     position: absolute;
-    height: 100%;
     top: 0;
     left: 0;
     pointer-events: none;
@@ -18,7 +17,7 @@ $shadow: (
 
 @for $i from 1 through $s {
     $x: random(2200);
-    $y: random(3000);
+    $y: random(3500);
     $shadow: $shadow, ($x+px $y+px #fff) !global;
 }
 
