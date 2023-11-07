@@ -3,7 +3,7 @@ $s: 1000; // number of stars
 //translate3d(0px, -34.8262px, 0px)
 
 .meteor-shower-container {
-    width: 1200px;
+    width: 100vw;
     background-image: none;
     position: absolute;
     top: 0;
@@ -17,7 +17,7 @@ $shadow: (
 
 @for $i from 1 through $s {
     $x: random(2200);
-    $y: random(3500);
+    $y: random(3000);
     $shadow: $shadow, ($x+px $y+px #fff) !global;
 }
 
