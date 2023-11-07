@@ -3,7 +3,9 @@ import "../styles/components/CometShower.scss";
 import useScrollStore from "../zustand/useScrollStore";
 const CometShower = () => {
   const { scrollY, setScrollY } = useScrollStore();
-
+  /**
+   *
+   */
   const handleScroll = () => {
     setScrollY(window.scrollY);
   };
