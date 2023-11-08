@@ -3,11 +3,9 @@
 
 .asteroid-page {
   margin: 3rem;
-  position: absolute;
+  position: relative;
   overflow-x: hidden;
-  z-index: 5;
-  top: 0;
-  left: 0;
+  z-index: 2;
 
   .name-plate {
     padding: 1rem 0 1rem .5rem;

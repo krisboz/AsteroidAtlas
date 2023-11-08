@@ -5,12 +5,13 @@ import { GiAsteroid, GiSpermWhale } from "react-icons/gi";
 import "../styles/components/SizeComparator.scss";
 
 const SizeComparator = ({ asteroidSize }) => {
-  const [isMobileView, setIsMobileView] = useState(false);
-  var x = window.matchMedia("(max-width:820px)");
-  const fixedAsteroidSize = isMobileView ? 150 : 300; // 150px
+  //Determine if user is in mobile or desktop view
+  const [mobile, setMobile] = useState(window.innerWidth <= 820);
+  const fixedAsteroidSize = mobile ? 150 : 300;
   const scales = calcScale(asteroidSize);
-
+  //What the asteroid is compared to
   const [comparedTo, setComparedTo] = useState("human");
+  //On what element is the comparison anchored
   const [anchorPoint, setAnchorPoint] = useState("asteroid");
   // Calculate the scaling factor for other items relative to the fixed asteroid size
   const handleComparisonChange = (event) => setComparedTo(event.target.value);
@@ -18,6 +19,18 @@ const SizeComparator = ({ asteroidSize }) => {
     setAnchorPoint(event.target.value);
   };
 
+  const handleWindowSizeChange = () => {
+    setMobile(window.innerWidth <= 820);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
+  //Translates icons when the scales get really big
   const returnTransformValue = (scale, spec = null) => {
     if (
       anchorPoint === "asteroid" &&
@@ -34,10 +47,8 @@ const SizeComparator = ({ asteroidSize }) => {
     } else return 0;
   };
 
+  //Determine style (scale and transform) for icons
   const returnTransformScaleStyle = (iconType) => {
-    //if we're anchored to asteroid, we get the scale value
-    //of the comparator, else we scale the asteroid
-
     if (anchorPoint === "asteroid") {
       if (!iconType) return null;
       else
@@ -54,6 +65,8 @@ const SizeComparator = ({ asteroidSize }) => {
         )}%)`;
     }
   };
+
+  //TODO - take it out into a special function
 
   const returnIcon = (iconType) => {
     const icons = {
@@ -233,7 +246,7 @@ const SizeComparator = ({ asteroidSize }) => {
               id="asteroid"
               name="selected-anchor"
               value="asteroid"
-              checked={anchorPoint === "asteroid"}
+              defaultChecked={anchorPoint === "asteroid"}
             ></input>
           </span>
           <span>
@@ -241,7 +254,7 @@ const SizeComparator = ({ asteroidSize }) => {
               type="radio"
               id="compared"
               name="selected-anchor"
-              checked={anchorPoint !== "asteroid"}
+              defaultChecked={anchorPoint !== "asteroid"}
               value={comparedTo}
             ></input>
             <label for="compared">{comparedTo.toUpperCase()}</label>

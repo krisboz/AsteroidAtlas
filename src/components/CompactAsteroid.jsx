@@ -8,16 +8,8 @@ import parseDiameterForDisplay from "../helpers/parseDiameterForDisplay";
 import { Link } from "react-router-dom";
 import "../styles/components/CompactAsteroid.scss";
 
-const CompactAsteroid = ({
-  name,
-  speed,
-  date,
-  hazard,
-  id,
-  missDistance,
-  diameter,
-  setId,
-}) => {
+const CompactAsteroid = ({ asteroid, orderBy }) => {
+  const { name, speed, date, hazard, id, missDistance, diameter } = asteroid;
   const falseIcon = (
     <span className="false-icon">
       <AiFillCloseCircle />
@@ -39,12 +31,26 @@ const CompactAsteroid = ({
         <h3>{name}</h3>
         <p>
           <BsSpeedometer2 />{" "}
-          <CountUp end={speed} delay={0} suffix=" km/h" duration={2} />
+          <CountUp
+            end={speed}
+            delay={0}
+            suffix=" km/h"
+            duration={0.1}
+            style={{ color: `${orderBy === "speed" ? "#ff870e" : "inherit"}` }}
+          />
         </p>
 
         <p>
           <MdCallMissed />{" "}
-          <CountUp end={missDistance} delay={0} suffix=" km" duration={2} />
+          <CountUp
+            end={missDistance}
+            delay={0}
+            suffix=" km"
+            duration={2}
+            style={{
+              color: `${orderBy === "missDistance" ? "#ff870e" : "inherit"}`,
+            }}
+          />
         </p>
         <p>
           ⌀{" "}
@@ -53,6 +59,9 @@ const CompactAsteroid = ({
             delay={0}
             suffix={parseDiameterForDisplay(diameter).unit}
             duration={2}
+            style={{
+              color: `${orderBy === "diameter" ? "#ff870e" : "inherit"}`,
+            }}
           />
         </p>
         <p className={hazard ? "is-hazard" : "is-safe"}>

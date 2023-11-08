@@ -6,6 +6,8 @@
 8. Size comparator - add anchor changing -DONE
 3. Add navbar - DONE
 5. Make a better date picker - DONE
+3. Add detecting mobile vs desktop view on size comparator - DONE
+
 
 
 
@@ -22,7 +24,6 @@ orbital data doesn't exist in the list views dataset
 1. Mobile responsiveness
 
 4. allow form submission with enter key
-3. Add detecting mobile vs desktop view on size comparator
 3. Make Leafled Destruction Map
 6. add on asteroid list sorting by speed and size
     6.1 Fastest, biggest, and heaviest ever

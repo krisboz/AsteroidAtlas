@@ -1,6 +1,8 @@
 @import "../partials/colors";
 
 .home {
+    overflow-y: hidden;
+    height: 100%;
 
     .hero-container {
         display: flex;

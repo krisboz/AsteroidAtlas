@@ -1,8 +1,52 @@
 @import "../partials/colors";
 
+.orbital-data .nerd-data .properties .Collapsible .is-open {
+    text-decoration: none;
+}
+
+.Collapsible__trigger {
+    color: white;
+    overflow: hidden;
+    display: block;
+    position: relative;
+    padding: 0.5em 0;
+    text-decoration: none;
+    z-index: 2;
+}
+
+.Collapsible__trigger::after {
+
+    content: '';
+    position: absolute;
+    top: 28;
+    left: 0;
+    z-index: 1;
+
+    padding: 0 .1rem 0 0;
+
+    background-color: rgba(245, 70, 17, 0.33);
+    opacity: 0;
+    overflow: hidden;
+    opacity: 1;
+    transform: translate3d(0, -100%, 0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+
+.Collapsible__trigger:hover::after,
+.Collapsible__trigger:focus::after {
+    width: .1em;
+    height: 50%;
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+
+}
+
+
 .collapsible-test {
     color: $accent-text-color;
 }
+
 
 .orbital-data {
     background: rgba(12, 76, 8, 0.54);
