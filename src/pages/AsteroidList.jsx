@@ -4,6 +4,7 @@ import CompactAsteroid from "../components/CompactAsteroid";
 import LoadingAnim from "../components/LoadingAnim";
 import "../styles/pages/AsteroidList.scss";
 import useAsteroidsStore from "../zustand/useAsteroidsStore";
+import AsteroidPage from "./AsteroidPage";
 
 const AsteroidList = () => {
   const { asteroidsState, addAsteroid } = useAsteroidsStore();

@@ -20,8 +20,8 @@ const SizeComparator = ({ asteroidSize }) => {
 
   const returnTransformValue = (scale, spec = null) => {
     if (
-      (anchorPoint === "asteroid" && comparedTo === "eiffel") ||
-      comparedTo === "burj"
+      anchorPoint === "asteroid" &&
+      (comparedTo === "eiffel" || comparedTo === "burj")
     ) {
       return 0;
     }

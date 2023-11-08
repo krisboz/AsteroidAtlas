@@ -4,27 +4,33 @@
 7. Clean up CometShower.scss -DONE
 7. Optional - on list add avg size/diameter DONE
 8. Size comparator - add anchor changing -DONE
+3. Add navbar - DONE
+5. Make a better date picker - DONE
 
 
+
+TODAY 8.11. ON THE MENU -> BACK TO ASTEROID LIST
+JUST MAKE IT SLIDE OUT ITS EVEN BETTER LIKE THAT, ONLY SAVE UP 
+INDIVIDUAL ASTEROIDS
 
 
 2. Add rendering to centralized state so it doesnt have to call everytime - still need to be 2 separate calls
 orbital data doesn't exist in the list views dataset
+    2.1 At least add a "back to asteroid list" button
 
 
 1. Mobile responsiveness
 
-3. Add navbar
 4. allow form submission with enter key
+3. Add detecting mobile vs desktop view on size comparator
+3. Make Leafled Destruction Map
+6. add on asteroid list sorting by speed and size
+    6.1 Fastest, biggest, and heaviest ever
 
-5. Make a better date picker
-6. Optional - add on asteroid list sorting by speed and size
-In sizeComparator.scss nest it nicely
 
-MAKE PACKAGE??
-Small script that is a todo extension for vs code that by having a todo.txt in your root
-folder when you enter a valid file name it becomes a link to the opening of the actual file in the
-folder structure
+
+
+
 
 
 ** ADD LEAFLET DESTRUCTION MAP

@@ -16,6 +16,7 @@ const CompactAsteroid = ({
   id,
   missDistance,
   diameter,
+  setId,
 }) => {
   const falseIcon = (
     <span className="false-icon">

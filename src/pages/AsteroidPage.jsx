@@ -12,7 +12,7 @@ import LoadingAnim from "../components/LoadingAnim";
 import CountUp from "react-countup";
 import { parse } from "date-fns";
 
-const AsteroidPage = () => {
+const AsteroidPage = ({ idTest }) => {
   //if the id is there
   const { id, date } = useParams();
   const [asteroid, setAsteroid] = useState(null);
