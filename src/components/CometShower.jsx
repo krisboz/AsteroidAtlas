@@ -13,6 +13,23 @@ const CometShower = () => {
     setScrollY(window.scrollY);
   };
 
+  let rafId;
+
+  const requestRef = () => {
+    rafId = requestAnimationFrame(() => {
+      handleScroll();
+      requestRef();
+    });
+  };
+
+  useEffect(() => {
+    requestRef();
+
+    return () => {
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   useEffect(() => {
     if (pathname === "/") {
       setLimitHeight(true);
@@ -21,18 +38,12 @@ const CometShower = () => {
     }
   }, [pathname]);
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
   //document.body.scrollHeight + 500
   return (
     <div
       className="meteor-shower-container"
       style={{
+        willChange: "transform",
         transform: `translate3d(0px, ${-scrollY / 3}px, 0px)`,
         height: `${
           limitHeight ? "100%" : `${document.body.scrollHeight + 500}px`
