@@ -12,10 +12,10 @@
     top: 0;
     left: 0;
     animation: slideIn .3s ease-in-out;
-    background: rgba(12, 76, 8, 0.54);
+    background: rgba(12, 76, 8, 0.84);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(9.3px);
-    -webkit-backdrop-filter: blur(9.3px);
+    -webkit-backdrop-filter: blur(15.3px);
 
     .close-btn-cont {
         width: 100%;

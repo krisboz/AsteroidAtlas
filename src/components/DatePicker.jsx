@@ -5,8 +5,10 @@ import { format, addDays } from "date-fns";
 import "../styles/components/DatePicker.scss";
 import "react-datepicker/dist/react-datepicker.css";
 import { AiOutlineCloseSquare as Close } from "react-icons/ai";
+import useCurrentQueryStore from "./../zustand/useCurrentQueryStore";
 
 const DatePickerComponent = ({ func }) => {
+  const { currQuery, setCurrQuery } = useCurrentQueryStore();
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(null);
   const maxDate = addDays(startDate, 7);
@@ -15,11 +17,11 @@ const DatePickerComponent = ({ func }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate(
-      `/asteroidlist/${format(startDate, "yyyy-MM-dd")}/${
-        endDate ? format(endDate, "yyyy-MM-dd") : "none"
-      }`
-    );
+
+    const startdate = format(startDate, "yyyy-MM-dd");
+    const enddate = endDate ? format(endDate, "yyyy-MM-dd") : null;
+    setCurrQuery({ startdate, enddate });
+    navigate(`/asteroidlist/${startdate}/${enddate ? enddate : "none"}`);
     func();
   };
 

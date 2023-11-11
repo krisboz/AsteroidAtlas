@@ -1,15 +1,18 @@
 import { useState, useEffect } from "react";
-import Home from "./pages/Home";
 import AppRoutes from "./AppRoutes";
 import CometShower from "./components/CometShower";
 import Navbar from "./components/Navbar";
-import { HashRouter, matchRoutes, useLocation } from "react-router-dom";
-import useScrollStore from "./zustand/useScrollStore";
+import { useLocation } from "react-router-dom";
 import { ParallaxProvider } from "react-scroll-parallax";
 
 import "./App.scss";
 
 function App() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   return (
     <ParallaxProvider>
       <Navbar />

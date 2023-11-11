@@ -7,6 +7,23 @@
   overflow-x: hidden;
   z-index: 2;
 
+  button {
+    border: none;
+    color: $accent-text-color;
+    font-size: 1.2rem;
+    background: none;
+    margin: 1rem .3rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    cursor: pointer;
+
+  }
+
+  button:active {
+    color: green;
+  }
+
   .name-plate {
     padding: 1rem 0 1rem .5rem;
     display: flex;

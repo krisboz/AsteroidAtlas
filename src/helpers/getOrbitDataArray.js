@@ -18,8 +18,6 @@ const getOrbitDataArray = (allData) => {
     const index = i * step;
     evenlyDistributedPoints.push(measurements[index]);
   }
-
-  console.log(allData);
 };
 
 export default getOrbitDataArray;

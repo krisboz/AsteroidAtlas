@@ -24,8 +24,6 @@ import OrbitCanvas from "./OrbitCanvas";
   };
  */
 const OrbitalData = ({ data }) => {
-  console.log("THIS ONE", data);
-
   return (
     <section className="orbital-data">
       <h2>Orbital Data</h2>

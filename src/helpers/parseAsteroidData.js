@@ -1,6 +1,5 @@
 import format from "date-fns/format";
 const parseAsteroidData = (data, date) => {
-  console.log("Unparsed data", data);
   const diameterHelper = (type) => {
     //type - max || min
     return data.estimated_diameter.meters[`estimated_diameter_${type}`];

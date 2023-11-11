@@ -1,8 +1,11 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "../styles/components/CometShower.scss";
 import useScrollStore from "../zustand/useScrollStore";
+import { useLocation } from "react-router-dom";
 const CometShower = () => {
   const { scrollY, setScrollY } = useScrollStore();
+  const [limitHeight, setLimitHeight] = useState(false);
+  const { pathname } = useLocation();
   /**
    *
    */
@@ -11,18 +14,29 @@ const CometShower = () => {
   };
 
   useEffect(() => {
+    if (pathname === "/") {
+      setLimitHeight(true);
+    } else {
+      setLimitHeight(false);
+    }
+  }, [pathname]);
+
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [handleScroll]);
+  }, []);
+  //document.body.scrollHeight + 500
   return (
     <div
       className="meteor-shower-container"
       style={{
         transform: `translate3d(0px, ${-scrollY / 3}px, 0px)`,
-        height: `${document.body.scrollHeight + 500}px`,
+        height: `${
+          limitHeight ? "100%" : `${document.body.scrollHeight + 500}px`
+        }`,
       }}
     >
       <div className="star"></div>

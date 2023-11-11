@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "../styles/pages/AsteroidPage.scss";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { MdCallMissed } from "react-icons/md";
@@ -10,11 +10,12 @@ import OrbitalData from "../components/OrbitalData";
 import getOrbitDataArray from "../helpers/getOrbitDataArray";
 import LoadingAnim from "../components/LoadingAnim";
 import CountUp from "react-countup";
-import { parse } from "date-fns";
-
+import { IoArrowBackSharp } from "react-icons/io5";
+import useCurrentQueryStore from "../zustand/useCurrentQueryStore";
 const AsteroidPage = ({ idTest }) => {
   //if the id is there
   const { id, date } = useParams();
+  const { currQuery, setCurrQuery } = useCurrentQueryStore();
   const [asteroid, setAsteroid] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -38,6 +39,15 @@ const AsteroidPage = ({ idTest }) => {
   } else {
   }
 
+  const navigate = useNavigate();
+  const handleGoBack = () => {
+    navigate(
+      `/asteroidlist/${currQuery.startdate}/${
+        currQuery.enddate ? currQuery.enddate : "none"
+      }`
+    );
+  };
+
   if (loading) {
     return <LoadingAnim />;
   }
@@ -46,9 +56,14 @@ const AsteroidPage = ({ idTest }) => {
     return <div>{error.message}</div>;
   }
 
+  //Here add a return button
   if (asteroid) {
     return (
       <main className="asteroid-page">
+        <button onClick={handleGoBack}>
+          <IoArrowBackSharp /> to List
+        </button>
+
         <div className="name-plate">
           <h1>{asteroid.name}</h1>
           <p className="id">#{id}</p>

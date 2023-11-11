@@ -2,13 +2,15 @@ import { create } from "zustand";
 
 const useAsteroidListStore = create((set) => ({
   asteroidListData: {},
-  setAsteroidListData: (date, data) =>
+  setAsteroidListData: (data) =>
     set((state) => ({
       asteroidListData: {
         ...state.asteroidListData,
-        [date]: data,
+        data,
       },
     })),
+  resetAsteroidListData: () =>
+    set((state) => ({ asteroidListData: state.initialAsteroidListData })),
 }));
 
 export default useAsteroidListStore;

@@ -3,12 +3,13 @@ import { useParams } from "react-router-dom";
 import CompactAsteroid from "../components/CompactAsteroid";
 import LoadingAnim from "../components/LoadingAnim";
 import "../styles/pages/AsteroidList.scss";
-import useAsteroidsStore from "../zustand/useAsteroidsStore";
 import sortAsteroids from "../helpers/sortAsteroids";
+import useAsteroidListStore from "../zustand/useAsteroidListStore";
 
 const AsteroidList = () => {
-  const { asteroidsState, addAsteroid } = useAsteroidsStore();
   const { startdate, enddate } = useParams();
+  const { asteroidListData, setAsteroidListData, resetAsteroidListData } =
+    useAsteroidListStore();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [asteroids, setAsteroids] = useState(null);
@@ -39,30 +40,37 @@ const AsteroidList = () => {
         parsedList.push(newAsteroidObj);
       });
     });
-    console.log(
-      "parsedList",
-      sortAsteroids(parsedList, "speed").map((el) => el.misDistance)
-    );
+
     return parsedList;
   };
 
   useEffect(() => {
     setLoading(true);
 
-    fetch(
-      `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startdate}&end_date=${
-        enddate !== "none" ? enddate : startdate
-      }&api_key=${API_KEY} `
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        setAsteroids(parseAsteroidListData(data.near_earth_objects), orderBy);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err);
-        setLoading(false);
-      });
+    //fetch wenn its not in the state
+    //!asteroidListData.startdate
+    if (asteroidListData.data) {
+      setAsteroids(parseAsteroidListData(asteroidListData.data));
+      setLoading(false);
+      return;
+    } else {
+      resetAsteroidListData();
+      fetch(
+        `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startdate}&end_date=${
+          enddate !== "none" ? enddate : startdate
+        }&api_key=${API_KEY} `
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          setAsteroidListData(data.near_earth_objects);
+          setAsteroids(parseAsteroidListData(data.near_earth_objects), orderBy);
+          setLoading(false);
+        })
+        .catch((err) => {
+          setError(err);
+          setLoading(false);
+        });
+    }
   }, [startdate, enddate]);
 
   const handleOrderChange = (event) => {
@@ -88,7 +96,7 @@ const AsteroidList = () => {
         <h1>Upcoming Near-Earth Asteroids</h1>
         <h3>Discover a curated list of asteroids approaching Earth</h3>
         <div className="order-container">
-          <label for="order-select">Order by:</label>
+          <label htmlFor="order-select">Order by:</label>
 
           <select name="pets" id="order-select" onChange={handleOrderChange}>
             <option value="none">None</option>
@@ -99,8 +107,8 @@ const AsteroidList = () => {
         </div>{" "}
       </div>
 
-      {sortAsteroids(asteroids, orderBy).map((asteroid) => (
-        <CompactAsteroid asteroid={asteroid} orderBy={orderBy} />
+      {sortAsteroids(asteroids, orderBy).map((asteroid, i) => (
+        <CompactAsteroid asteroid={asteroid} orderBy={orderBy} key={i} />
       ))}
     </main>
   );
