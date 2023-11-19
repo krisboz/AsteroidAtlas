@@ -17,7 +17,7 @@ $shadow: (
 );
 
 @for $i from 1 through $s {
-    $x: random(1600); //x position of a star
+    $x: random(2200); //x position of a star
     $y: random(4000); //x position of a star
     $shadow: $shadow, ($x+px $y+px #fff) !global;
 }
@@ -32,7 +32,7 @@ $shadow: (
 }
 
 @for $i from 1 through $n {
-    $v: calc(random(90) + 9); // left
+    $v: calc(random(150) + 9); // left
     $h: calc(random(50) + 50); // top
     $d: calc(random(550)/10 + 3); // seconds
 

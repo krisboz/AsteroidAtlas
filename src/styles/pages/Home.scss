@@ -43,6 +43,16 @@
                 color: $background_color;
                 font-size: 1.3rem;
                 padding: .3rem .9rem;
+                transition: 0.3s ease-in-out;
+                cursor: pointer;
+            }
+
+            button:hover {
+                border-radius: 15px;
+            }
+
+            button:active {
+                background-color: green;
             }
         }
     }

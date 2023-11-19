@@ -6,9 +6,6 @@ const CometShower = () => {
   const { scrollY, setScrollY } = useScrollStore();
   const [limitHeight, setLimitHeight] = useState(false);
   const { pathname } = useLocation();
-  /**
-   *
-   */
   const handleScroll = () => {
     setScrollY(window.scrollY);
   };
@@ -38,7 +35,6 @@ const CometShower = () => {
     }
   }, [pathname]);
 
-  //document.body.scrollHeight + 500
   return (
     <div
       className="meteor-shower-container"

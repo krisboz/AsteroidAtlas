@@ -5,9 +5,12 @@ import LoadingAnim from "../components/LoadingAnim";
 import "../styles/pages/AsteroidList.scss";
 import sortAsteroids from "../helpers/sortAsteroids";
 import useAsteroidListStore from "../zustand/useAsteroidListStore";
+import useCurrentQueryStore from "../zustand/useCurrentQueryStore";
 
 const AsteroidList = () => {
+  const { currQuery } = useCurrentQueryStore();
   const { startdate, enddate } = useParams();
+
   const { asteroidListData, setAsteroidListData, resetAsteroidListData } =
     useAsteroidListStore();
   const [loading, setLoading] = useState(true);
@@ -44,12 +47,13 @@ const AsteroidList = () => {
     return parsedList;
   };
 
+  //API Data fetching, it first checks if there is any in the state and if there is it doesnt make another call
+  //It resets the state before any fetch just because it's more used as a back to list button from an individual
+  //AsteroidPage component
   useEffect(() => {
     setLoading(true);
 
-    //fetch wenn its not in the state
-    //!asteroidListData.startdate
-    if (asteroidListData.data) {
+    if (asteroidListData.data && asteroidListData.data[`${startdate}`]) {
       setAsteroids(parseAsteroidListData(asteroidListData.data));
       setLoading(false);
       return;
@@ -71,7 +75,7 @@ const AsteroidList = () => {
           setLoading(false);
         });
     }
-  }, [startdate, enddate]);
+  }, [currQuery]);
 
   const handleOrderChange = (event) => {
     setOrderBy(event.target.value);
@@ -79,7 +83,7 @@ const AsteroidList = () => {
 
   if (error) {
     return (
-      <div>
+      <div style={{ marginTop: "150px" }}>
         <p>{error.code}</p>
         <p>{error.message}</p>
       </div>

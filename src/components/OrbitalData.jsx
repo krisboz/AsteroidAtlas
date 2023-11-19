@@ -4,24 +4,23 @@ import getAsteroidPropertyDescription from "../helpers/getAsteroidPropDescriptio
 import parsePropertyName from "../helpers/parsePropertyName";
 import "../styles/components/OrbitalData.scss";
 import Collapsible from "react-collapsible";
-import OrbitCanvas from "./OrbitCanvas";
 
 /**
  * 
- *   const orbital_data = {
-            first_observed: 
-        observations_used: 
-        description: 
-        period: 
-        aphelion: 
-        perihelion: 
-        jupiter_tisserand_invariant: 
-        inclination: 
-        eccentricity: 
-        mean_motion: 
-        semi_major_axis: 
-        ascending_node_longitude: 
-  };
+ *   ORBITAL DATA :
+        first_observed
+        observations_used
+        description
+        period
+        aphelion
+        perihelion 
+        jupiter_tisserand_invariant
+        inclination
+        eccentricity
+        mean_motion
+        semi_major_axis:
+        ascending_node_longitude:
+  
  */
 const OrbitalData = ({ data }) => {
   return (

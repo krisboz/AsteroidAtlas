@@ -1,7 +1,8 @@
 import "../styles/Navbar.scss";
 import { useState } from "react";
-import { Link, matchRoutes, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import DatePickerComponent from "./DatePicker";
+
 const Navbar = () => {
   const [showDate, setShowDate] = useState(false);
 
@@ -19,7 +20,7 @@ const Navbar = () => {
 
         <ul style={{ display: "flex", gap: "1rem" }}>
           <li>
-            <button onClick={toggleShowDate}>Change Query Date</button>
+            <button onClick={toggleShowDate}>Change Date</button>
           </li>
         </ul>
         {showDate && <DatePickerComponent func={toggleShowDate} />}

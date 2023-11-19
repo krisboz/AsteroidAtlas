@@ -21,7 +21,9 @@ const DatePickerComponent = ({ func }) => {
     const startdate = format(startDate, "yyyy-MM-dd");
     const enddate = endDate ? format(endDate, "yyyy-MM-dd") : null;
     setCurrQuery({ startdate, enddate });
-    navigate(`/asteroidlist/${startdate}/${enddate ? enddate : "none"}`);
+    navigate(`/asteroidlist/${startdate}/${enddate ? enddate : "none"}`, {
+      state: { forceRefresh: true },
+    });
     func();
   };
 

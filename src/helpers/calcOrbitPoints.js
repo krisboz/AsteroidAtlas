@@ -1,3 +1,11 @@
+/*
+I had a cool idea to make an orbit visualizer with all of the data that i can get from the API
+The idea was to use all of the data that i could to make an approximate 2d translation of the orbit
+After finishing this function I realized that I only have access to the data for a single date
+so it would just draw a single point
+I leave this function for anyone to see as I may come back to it in the future
+*/
+
 const calcOrbitPoints = (data) => {
   // 1. Calculate Mean Anomaly
   const mean_anomaly = data.mean_motion * data.epoch;

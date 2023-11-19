@@ -1,6 +1,5 @@
 import React from "react";
 import { BsSpeedometer2 } from "react-icons/bs";
-import { AiFillCheckCircle, AiFillCloseCircle } from "react-icons/ai";
 import { MdCallMissed } from "react-icons/md";
 import CountUp from "react-countup";
 import parseDiameterForDisplay from "../helpers/parseDiameterForDisplay";
@@ -10,17 +9,6 @@ import "../styles/components/CompactAsteroid.scss";
 
 const CompactAsteroid = ({ asteroid, orderBy }) => {
   const { name, speed, date, hazard, id, missDistance, diameter } = asteroid;
-  const falseIcon = (
-    <span className="false-icon">
-      <AiFillCloseCircle />
-    </span>
-  );
-
-  const trueIcon = (
-    <span className="true-icon">
-      <AiFillCheckCircle />
-    </span>
-  );
 
   return (
     <article className="compact-asteroid" id={id}>
