@@ -7,15 +7,14 @@ import parseAsteroidData from "../helpers/parseAsteroidData";
 import SizeComparator from "../components/SizeComparator";
 import parseDiameterForDisplay from "./../helpers/parseDiameterForDisplay";
 import OrbitalData from "../components/OrbitalData";
-import getOrbitDataArray from "../helpers/getOrbitDataArray";
 import LoadingAnim from "../components/LoadingAnim";
 import CountUp from "react-countup";
 import { IoArrowBackSharp } from "react-icons/io5";
 import useCurrentQueryStore from "../zustand/useCurrentQueryStore";
-const AsteroidPage = ({ idTest }) => {
+const AsteroidPage = ({}) => {
   //if the id is there
   const { id, date } = useParams();
-  const { currQuery, setCurrQuery } = useCurrentQueryStore();
+  const { currQuery } = useCurrentQueryStore();
   const [asteroid, setAsteroid] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -28,7 +27,6 @@ const AsteroidPage = ({ idTest }) => {
         .then((response) => response.json())
         .then((data) => {
           setAsteroid(parseAsteroidData(data, date));
-          getOrbitDataArray(data);
           setLoading(false);
         })
         .catch((err) => {
