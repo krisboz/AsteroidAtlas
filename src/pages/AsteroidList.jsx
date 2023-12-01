@@ -111,9 +111,11 @@ const AsteroidList = () => {
         </div>{" "}
       </div>
 
-      {sortAsteroids(asteroids, orderBy).map((asteroid, i) => (
-        <CompactAsteroid asteroid={asteroid} orderBy={orderBy} key={i} />
-      ))}
+      <section className="asteroids-container">
+        {sortAsteroids(asteroids, orderBy).map((asteroid, i) => (
+          <CompactAsteroid asteroid={asteroid} orderBy={orderBy} key={i} />
+        ))}
+      </section>
     </main>
   );
 };

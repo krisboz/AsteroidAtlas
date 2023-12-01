@@ -19,7 +19,8 @@ const DatePickerComponent = ({ func }) => {
     event.preventDefault();
 
     const startdate = format(startDate, "yyyy-MM-dd");
-    const enddate = endDate ? format(endDate, "yyyy-MM-dd") : null;
+    //TODO change logic in the app to use just one date instead of two
+    const enddate = null;
     setCurrQuery({ startdate, enddate });
     navigate(`/asteroidlist/${startdate}/${enddate ? enddate : "none"}`, {
       state: { forceRefresh: true },
@@ -74,7 +75,9 @@ const DatePickerComponent = ({ func }) => {
             maxDate={maxDate}
           />
         </div>
-        <button type="submit">Search</button>
+        <button className="cta-button" type="submit">
+          Search
+        </button>
       </form>
     </section>
   );

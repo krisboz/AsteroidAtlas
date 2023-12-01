@@ -5,7 +5,16 @@
     background-color: $accent-text-color;
     border: none;
     color: $background_color;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     padding: 0.3rem 0.9rem;
     cursor: pointer;
+    transition: .3s ease-in-out;
+}
+
+.cta-button:hover {
+    border-radius: 15px;
+}
+
+.cta-button:active {
+    background-color: green;
 }

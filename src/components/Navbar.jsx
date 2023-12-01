@@ -20,7 +20,9 @@ const Navbar = () => {
 
         <ul style={{ display: "flex", gap: "1rem" }}>
           <li>
-            <button onClick={toggleShowDate}>Change Date</button>
+            <button className="cta-button" onClick={toggleShowDate}>
+              Change Date
+            </button>
           </li>
         </ul>
         {showDate && <DatePickerComponent func={toggleShowDate} />}

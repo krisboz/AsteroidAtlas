@@ -28,11 +28,7 @@ const CometShower = () => {
   }, []);
 
   useEffect(() => {
-    if (pathname === "/") {
-      setLimitHeight(true);
-    } else {
-      setLimitHeight(false);
-    }
+    setLimitHeight(pathname === "/");
   }, [pathname]);
 
   return (
