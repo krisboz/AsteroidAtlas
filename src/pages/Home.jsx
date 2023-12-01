@@ -27,8 +27,8 @@ const Home = () => {
             <p className="description-content">
               Navigate the cosmos using NASA's API data. Select a date, and
               Asteroid Atlas will guide you through the fascinating realm of
-              asteroids, sharing details about their names, sizes, and distances
-              .
+              asteroids, sharing details about their name s, sizes, and
+              distances .
             </p>
           </article>
 
