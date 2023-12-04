@@ -31,6 +31,8 @@
             background: none;
             color: $accent-text-color;
             font-size: 2rem;
+            border: none;
+            cursor: pointer;
         }
     }
 
@@ -50,10 +52,22 @@
             flex-direction: column;
         }
     }
+}
 
-
+.react-datepicker__input-container {
+    input {
+        color: $accent-text-color;
+        background: rgba(3, 3, 41, 0.76);
+        border-radius: 16px;
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5.7px);
+        -webkit-backdrop-filter: blur(5.7px);
+        border: 1px solid rgba(3, 3, 41, 0.3);
+        padding: 5px 15px;
+    }
 
 }
+
 
 @keyframes slideIn {
     from {

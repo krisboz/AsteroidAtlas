@@ -19,7 +19,6 @@ const DatePickerComponent = ({ func }) => {
     event.preventDefault();
 
     const startdate = format(startDate, "yyyy-MM-dd");
-    //TODO change logic in the app to use just one date instead of two
     const enddate = null;
     setCurrQuery({ startdate, enddate });
     navigate(`/asteroidlist/${startdate}/${enddate ? enddate : "none"}`, {

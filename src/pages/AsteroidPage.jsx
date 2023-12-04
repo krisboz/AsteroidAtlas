@@ -12,7 +12,6 @@ import CountUp from "react-countup";
 import { IoArrowBackSharp } from "react-icons/io5";
 import useCurrentQueryStore from "../zustand/useCurrentQueryStore";
 const AsteroidPage = ({}) => {
-  //if the id is there
   const { id, date } = useParams();
   const { currQuery } = useCurrentQueryStore();
   const [asteroid, setAsteroid] = useState(null);
@@ -54,7 +53,6 @@ const AsteroidPage = ({}) => {
     return <div>{error.message}</div>;
   }
 
-  //Here add a return button
   if (asteroid) {
     return (
       <main className="asteroid-page">
