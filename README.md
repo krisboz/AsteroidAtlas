@@ -41,9 +41,11 @@ Visit the live demo of Asteroid Atlas [https://krisboz.github.io/asteroid-atlas/
 Run the provided test for the `cycleDays` function:
 
 ```bash
-npm test
+npm run test
+```
 
 ## Technologies used:
+
 - React
 - NASA API
 - Zustand
@@ -54,7 +56,8 @@ npm test
 - React-countup
 - React-icons
 
-##Acknowledgments:
+## Acknowledgments:
+
 - Thanks to NASA for providing the asteroid data.
 - Inspired by the wonders of our solar system.
-```
+- Thanks to Misty1636 for providing a nice starting point for my background animation
