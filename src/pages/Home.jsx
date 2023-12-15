@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import "../styles/pages/Home.scss";
 import DatePickerComponent from "../components/DatePicker";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [showDatePicker, setShowDatePicker] = useState(false);
@@ -33,6 +34,7 @@ const Home = () => {
           </article>
 
           <button onClick={toggleShowDatePicker}>Start Exploring!</button>
+          <Link to={"/astroblast"} />
         </section>
       </div>
 
