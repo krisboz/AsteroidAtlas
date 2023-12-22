@@ -1,0 +1,13 @@
+.map-style-container {
+
+    .close-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem 0;
+
+        span {
+            color: orange;
+        }
+    }
+}

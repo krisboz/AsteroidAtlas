@@ -7,6 +7,12 @@
   overflow-x: hidden;
   z-index: 2;
 
+  .navigation-container {
+    display: flex;
+    justify-content: space-between;
+  }
+
+
   button {
     border: none;
     color: $accent-text-color;
@@ -121,6 +127,10 @@
     position: relative;
     overflow-x: hidden;
     z-index: 2;
+
+    .navigation-container {
+      display: flex;
+    }
 
     .name-plate {
       padding: 1rem 0 1rem .5rem;

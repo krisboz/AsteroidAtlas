@@ -2,51 +2,65 @@ import { useState } from "react";
 import {
   MapContainer,
   TileLayer,
-  Marker,
   Popup,
   useMapEvents,
   Circle,
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import "./styles/EnergyBlastMap.scss";
 
-const EnergyBlastMap = ({ coords }) => {
+const EnergyBlastMap = ({ coords, blastRadius }) => {
   const [clickPosition, setClickPosition] = useState(null);
-  const colors = ["red", "green", "purple"];
 
   const handleMapClick = (e) => {
     setClickPosition(e.latlng);
   };
 
+  //TODO Take it out into a new file and import Circle and Popup there
+  const drawCircles = (...diameters) => {
+    console.log(diameters);
+    const colors = ["red", "green", "purple"];
+    return diameters.map((diameter, index) => (
+      <Circle
+        key={index}
+        center={[clickPosition.lat, clickPosition.lng]}
+        radius={diameter}
+        color={colors[index % colors.length]} // Use modulo to cycle through colors
+      >
+        <Popup>
+          This is a circle with a radius of {diameter.toFixed()} meters.
+        </Popup>
+      </Circle>
+    ));
+  };
+
   return (
-    <MapContainer
-      className="leaflet-map"
-      center={[coords?.latitude || 45.813051, coords?.longitude || 15.9773]}
-      zoom={17}
-      scrollWheelZoom={true}
-      style={{ height: "100%" }}
+    <div
+      className="map-style-container"
+      style={{ height: "450px", paddingLeft: "5%" }}
     >
-      <TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+      <div className="close-container">
+        <p>
+          <span>Click</span> anywhere on the map to show the blast radius
+        </p>
+      </div>
+      <MapContainer
+        className="leaflet-map"
+        center={[coords?.latitude || 45.813051, coords?.longitude || 15.9773]}
+        zoom={2}
+        scrollWheelZoom={true}
+        style={{ height: "400px" }}
+      >
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
 
-      {clickPosition && (
-        <>
-          {[6000, 4000, 2000].map((radius, index) => (
-            <Circle
-              key={index}
-              center={[clickPosition.lat, clickPosition.lng]}
-              radius={radius}
-              color={colors[index % colors.length]} // Use modulo to cycle through colors
-            >
-              <Popup>This is a circle with a radius of {radius} meters.</Popup>
-            </Circle>
-          ))}
-        </>
-      )}
+        {clickPosition && <>{drawCircles(blastRadius)}</>}
 
-      <MapClickHandler onMapClick={handleMapClick} />
-    </MapContainer>
+        <MapClickHandler onMapClick={handleMapClick} />
+      </MapContainer>
+    </div>
   );
 };
 

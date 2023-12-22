@@ -1,0 +1,58 @@
+@import "../../styles/partials/colors";
+
+.astro-blast-screen {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+    padding: 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    background-color: $background_color;
+
+    .blast-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        gap: 1rem;
+
+        h1 {
+            color: $accent-text-color;
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-weight: 300;
+        }
+    }
+
+    .energy-info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding: 0rem .5rem;
+
+        .disclaimer {
+            font-size: 11px;
+            width: 95%;
+            margin: 1rem 0;
+            color: $accent-text-color;
+        }
+
+        .disclaimer::before {
+            content: "*";
+        }
+    }
+
+    .map-flex-container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+        padding: 0 .7rem 1rem .7rem;
+
+    }
+}

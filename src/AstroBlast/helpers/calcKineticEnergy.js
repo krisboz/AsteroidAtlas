@@ -1,15 +1,12 @@
 const calcKineticEnergy = (asteroidDiameter, relativeSpeedKmPerHour) => {
-  const density = 2.71; // g/cm^3 (mean density for S class asteroids)
-  // Step 1
-  const radius = asteroidDiameter / 2;
+  const density = 3; // g/cm^3 (mean density for S class asteroids)
+  const radius = asteroidDiameter / 2; // meters
 
-  // Step 2
-  const relativeSpeedMetersPerSecond = (relativeSpeedKmPerHour * 1000) / 3600;
+  const relativeSpeedMetersPerSecond = (relativeSpeedKmPerHour * 3600) / 1000;
 
-  // Step 3
-  const volume = (4 / 3) * Math.PI * Math.pow(radius, 3);
+  const volume = (4 / 3) * Math.PI * Math.pow(radius, 3); //m
   const mass = volume * density * 1e-6; // Convert mass to kilograms
-  const kineticEnergy = 0.5 * mass * Math.pow(relativeSpeedMetersPerSecond, 2);
+  const kineticEnergy = (mass * Math.pow(relativeSpeedMetersPerSecond, 2)) / 2;
 
   return kineticEnergy;
 };

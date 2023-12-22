@@ -11,9 +11,10 @@ const Navbar = () => {
   const toggleShowDate = () => {
     setShowDate(!showDate);
   };
-
   //Only render if not currently on home page
-  if (location.pathname !== "/") {
+  if (location.pathname === "/" || location.pathname.split("/")[1] === "asteroid") {
+    return null;
+  } else {
     return (
       <nav>
         <Link to="/">AsteroidAtlas</Link>
