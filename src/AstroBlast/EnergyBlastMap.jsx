@@ -18,7 +18,6 @@ const EnergyBlastMap = ({ coords, blastRadius }) => {
 
   //TODO Take it out into a new file and import Circle and Popup there
   const drawCircles = (...diameters) => {
-    console.log(diameters);
     const colors = ["red", "green", "purple"];
     return diameters.map((diameter, index) => (
       <Circle
@@ -46,7 +45,7 @@ const EnergyBlastMap = ({ coords, blastRadius }) => {
       </div>
       <MapContainer
         className="leaflet-map"
-        center={[coords?.latitude || 45.813051, coords?.longitude || 15.9773]}
+        center={[coords?.latitude || 49.13444, coords?.longitude || 10.07193]}
         zoom={2}
         scrollWheelZoom={true}
         style={{ height: "400px" }}

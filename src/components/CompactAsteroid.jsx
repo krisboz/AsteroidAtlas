@@ -3,12 +3,18 @@ import { BsSpeedometer2 } from "react-icons/bs";
 import { MdCallMissed } from "react-icons/md";
 import CountUp from "react-countup";
 import parseDiameterForDisplay from "../helpers/parseDiameterForDisplay";
+import { GiMeteorImpact } from "react-icons/gi";
 
 import { Link } from "react-router-dom";
 import "../styles/components/CompactAsteroid.scss";
 
-const CompactAsteroid = ({ asteroid, orderBy }) => {
+const CompactAsteroid = ({ asteroid, orderBy, impactFunc, index }) => {
   const { name, speed, date, hazard, id, missDistance, diameter } = asteroid;
+
+  const handleImpactCallback = (event) => {
+    console.log(index);
+    impactFunc(event, index);
+  };
 
   return (
     <article className="compact-asteroid" id={id}>
@@ -60,6 +66,9 @@ const CompactAsteroid = ({ asteroid, orderBy }) => {
         <Link to={`/asteroid/${id}/${date}`} className="cta-button">
           View Details
         </Link>
+        <button className="impact-button" onClick={handleImpactCallback}>
+          <GiMeteorImpact />
+        </button>
       </div>
     </article>
   );

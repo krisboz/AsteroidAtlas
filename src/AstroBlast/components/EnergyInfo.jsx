@@ -1,118 +1,66 @@
 import "../styles/EnergyInfo.scss";
-import { GiDynamite } from "react-icons/gi";
-
-const EnergyInfo = ({ name, size, energy, blastRadius }) => {
-  //Augsburg
-  //Landshut
-  //Erding
-
+import { IoIosArrowDown } from "react-icons/io";
+const EnergyInfo = ({ name, size, energy, blastRadius, speed, mass }) => {
   return (
     <article className="energy-info-container">
-      <p>{name}</p>
+      <h4>{name}</h4>
       <table>
         <tbody>
           <tr>
-            <td className="label">Size</td>
-            <td className="value">{size} m</td>
-          </tr>
-          <tr>
-            <td className="label">Energy</td>
+            <td className="label" title="Relative Velocity">
+              Speed
+            </td>
             <td className="value">
-              {Math.round(energy).toLocaleString("de-DE")} J
+              {Math.round(speed).toLocaleString("de-DE")} km/h
             </td>
           </tr>
           <tr>
-            <td className="label">Blast radius</td>
+            <td className="label" title="Diameter of the asteroid">
+              Size
+            </td>
+            <td className="value">{Math.round(size)} m</td>
+          </tr>
+          <tr>
+            <td className="label" title="Assuming density of 2 g/cm^3">
+              Mass
+            </td>
             <td className="value">
-              {Math.round(blastRadius).toLocaleString("de-DE")} m
+              {Math.round(mass).toLocaleString("de-DE")} kg
+            </td>
+          </tr>
+
+          <tr>
+            <td className="label" title="Using KE = 1/2mv^2 ">
+              Energy
+            </td>
+            <td className="value">
+              {Math.floor(energy).toLocaleString("de-DE")} gJ
             </td>
           </tr>
           <tr>
-            <td className="label">
-              <GiDynamite />
+            <td
+              className="label"
+              title="if we converted the energy to a TNT equivalent"
+            >
+              Blast radius
             </td>
             <td className="value">
-              {Math.round(energy / 4184).toLocaleString("de-DE")} g
+              {Math.round(blastRadius / 1000).toLocaleString("de-DE")} km
             </td>
           </tr>
         </tbody>
       </table>
+
+      <div>
+        <p>Scroll Down For More Info</p>
+        <div className="arrow-container">
+          <IoIosArrowDown />
+          <IoIosArrowDown />
+          <IoIosArrowDown />
+        </div>
+      </div>
     </article>
   );
-
-  //TODO for the love of god make a dynamic version instead of this monstrosity
-
-  /**
-   *   if (size < 25) {
-    return (
-      <article className="energy-info-container">
-        <p>
-          {name} would probably burn up as it entered the Earth's atmosphere and
-          cause no damage
-        </p>
-        <p>
-          If it didn't burn out, it would impact the Earth with approximately{" "}
-          {Math.round(energy).toLocaleString("de-DE")} Joules
-        </p>
-        <p>
-          That is the equivalent of{" "}
-          {Math.round(energy / 4184).toLocaleString("de-DE")} sticks of dynamite
-        </p>
-        <p>
-          It's blast radius would be{" "}
-          {blastRadius.toFixed().toLocaleString("de-DE")} meters
-        </p>
-      </article>
-    );
-  }
-
-  if (size > 25 && size < 1000) {
-    return (
-      <article className="energy-info-container">
-        <p>
-          {name} would cause local damage but most likely wouldn't trigger
-          catastrophic events
-        </p>
-        <p>
-          It would impact the Earth with approximately{" "}
-          {Math.round(energy).toLocaleString("de-DE")} Joules
-        </p>
-        <p>
-          That is the equivalent of{" "}
-          {Math.round(energy / 4184).toLocaleString("de-DE")} sticks of dynamite
-        </p>
-        <p>
-          It's blast radius would be{" "}
-          {blastRadius.toFixed().toLocaleString("de-DE")} meters
-        </p>
-      </article>
-    );
-  }
-
-  if (size > 1000) {
-    return (
-      <article className="energy-info-container">
-        <p>
-          {name} would most likely cause worldwide and possibly catastrophic
-          effects
-        </p>
-        <p>
-          It would impact the Earth with approximately{" "}
-          {Math.round(energy).toLocaleString("de-DE")}
-          Joules
-        </p>
-        <p>
-          That is the equivalent of{" "}
-          {Math.round(energy / 4184).toLocaleString("de-DE")} sticks of dynamite
-        </p>
-        <p>
-          It's blast radius would be{" "}
-          {Math.round(blastRadius).toLocaleString("de-DE")} meters
-        </p>
-      </article>
-    );
-  }
-   */
 };
 
 export default EnergyInfo;

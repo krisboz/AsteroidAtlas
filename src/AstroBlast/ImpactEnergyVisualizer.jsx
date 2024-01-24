@@ -1,8 +1,14 @@
+import { useState, useRef } from "react";
+import { CSSTransition } from "react-transition-group";
 import EnergyBlastMap from "./EnergyBlastMap";
 import calcKineticEnergy from "./helpers/calcKineticEnergy";
 import calcBlastRadius from "./helpers/calcBlastRadius";
 import "./styles/ImpactEnergyVisualizer.scss";
 import EnergyInfo from "./components/EnergyInfo";
+import { IoArrowBackSharp } from "react-icons/io5";
+import ImpactHeader from "./components/ImpactHeader";
+import AdditionalInfo from "./components/AdditionalInfo";
+
 const ImpactEnergyVisualizer = ({ name, diameter, speedKmH, func }) => {
   //it would power a city of 1.000.000 people for ... years
   //
@@ -14,27 +20,42 @@ const ImpactEnergyVisualizer = ({ name, diameter, speedKmH, func }) => {
    *  According to NASA, asteroids larger than 2 km could have worldwide effects.
    */
 
-  const kineticEnergy = calcKineticEnergy(diameter, speedKmH);
-  const blastRadiusM = calcBlastRadius(kineticEnergy);
-  console.log({ kineticEnergy, blastRadiusM });
+  const handleClose = (event) => {
+    func(event);
+  };
+  const energyValues = calcKineticEnergy(diameter, speedKmH);
+  const tntValues = calcBlastRadius(energyValues.kineticEnergy);
+
   return (
     <div className="astro-blast-screen">
-      <button onClick={func}>Close</button>
-      <div className="blast-header">
-        <h1>Impact Energy Visualizer</h1>
-        <h2>Energy {name} would generate on impact</h2>
+      <div className="back-btn-container">
+        <button onClick={handleClose}>
+          {" "}
+          <IoArrowBackSharp /> Back to List
+        </button>
       </div>
 
+      <ImpactHeader diameter={diameter} name={name} />
+
       <div className="map-flex-container">
-        <EnergyBlastMap blastRadius={blastRadiusM} />
+        <EnergyBlastMap blastRadius={tntValues.blastRadius / 2} />
 
         <EnergyInfo
           name={name}
           size={diameter}
-          energy={kineticEnergy}
-          blastRadius={blastRadiusM}
+          energy={energyValues.KEgJ}
+          blastRadius={tntValues.blastRadius}
+          speed={speedKmH}
+          mass={energyValues.mass}
         />
       </div>
+      <AdditionalInfo
+        speed={speedKmH}
+        mass={energyValues.mass}
+        energy={energyValues.kineticEnergy}
+        tntEquivalent={tntValues.tntEquivalent}
+        size={diameter}
+      />
     </div>
   );
 };

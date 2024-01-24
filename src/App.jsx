@@ -14,7 +14,6 @@ function App() {
   }, [pathname]);
   return (
     <>
-      <Navbar />
       <AppRoutes />
       <CometShower />
     </>

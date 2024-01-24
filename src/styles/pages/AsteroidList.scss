@@ -4,6 +4,8 @@
     align-items: center;
     padding: 2rem;
     gap: 4rem;
+    animation: slideOut 1s ease-in-out;
+
 
     .headings {
         display: flex;
@@ -18,6 +20,11 @@
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 10rem;
     }
+}
+
+.animation-out {
+    animation: slideOut 1s ease-in-out;
+
 }
 
 @media (max-width:824px) {
@@ -51,5 +58,15 @@
             align-items: center;
 
         }
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        left: 0%;
+    }
+
+    100% {
+        left: 100%;
     }
 }

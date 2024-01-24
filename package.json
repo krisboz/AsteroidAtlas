@@ -25,6 +25,7 @@
     "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.17.0",
     "react-simple-typewriter": "^5.0.1",
+    "react-transition-group": "^4.4.5",
     "sass": "^1.69.4",
     "vitest": "^0.34.6",
     "zustand": "^4.4.4"

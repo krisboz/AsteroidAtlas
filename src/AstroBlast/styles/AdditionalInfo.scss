@@ -1,0 +1,99 @@
+@import "../../styles/partials/colors";
+
+.additional-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+    gap: 1rem;
+
+
+
+
+
+    .more-data {
+        display: grid;
+        padding-top: 2rem;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: .3rem;
+
+        .data-thing {
+            p {
+                border: 1px solid $accent-text-color;
+                padding: .3rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: fit-content;
+            }
+
+            &:nth-child(2) {
+                margin-top: 15%;
+            }
+
+            ul {
+                padding-left: 1.5rem;
+                font-size: .9rem;
+                color: rgb(214, 206, 206);
+
+                li {
+                    margin-top: .5rem;
+                }
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+    }
+
+
+    .other-effects {
+        padding-top: 3rem;
+        width: 100%;
+    }
+
+
+}
+
+.title-container {
+    width: 100%;
+    display: flex;
+    color: $accent-text-color;
+    font-weight: 400;
+    font-size: 1.3rem;
+}
+
+@media (max-width:820px) {
+    .additional-info {
+
+        .more-data {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+
+
+            .data-thing {
+
+                p {
+                    background-color: $bg-green;
+
+                }
+
+                &:nth-child(2) {
+                    margin-top: 0%;
+                }
+
+            }
+        }
+
+    }
+}

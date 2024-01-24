@@ -29,6 +29,7 @@ const AsteroidPage = ({}) => {
         .then((response) => response.json())
         .then((data) => {
           setAsteroid(parseAsteroidData(data, date));
+          console.log("data", data);
           setLoading(false);
         })
         .catch((err) => {

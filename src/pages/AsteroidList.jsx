@@ -1,23 +1,41 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CompactAsteroid from "../components/CompactAsteroid";
+import ImpactEnergyVisualizer from "../AstroBlast/ImpactEnergyVisualizer";
 import LoadingAnim from "../components/LoadingAnim";
 import "../styles/pages/AsteroidList.scss";
 import sortAsteroids from "../helpers/sortAsteroids";
 import useAsteroidListStore from "../zustand/useAsteroidListStore";
 import useCurrentQueryStore from "../zustand/useCurrentQueryStore";
+import Navbar from "../components/Navbar";
 
 const AsteroidList = () => {
+  const API_KEY = import.meta.env.VITE_NASA_API_KEY;
   const { currQuery } = useCurrentQueryStore();
   const { startdate, enddate } = useParams();
-
   const { asteroidListData, setAsteroidListData, resetAsteroidListData } =
     useAsteroidListStore();
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isImpactActive, setIsImpactActive] = useState(false);
+  const [animateOut, setAnimateOut] = useState(false);
   const [asteroids, setAsteroids] = useState(null);
   const [orderBy, setOrderBy] = useState("none");
-  const API_KEY = import.meta.env.VITE_NASA_API_KEY;
+  const [impactData, setImpactData] = useState(null);
+
+  const toggleIsImpactActive = (event, index) => {
+    if (index || index === 0) {
+      const { speed, diameter, name } = asteroids[index];
+      setImpactData({ speed, diameter, name });
+      console.log({ speed, diameter, name });
+
+      setIsImpactActive((prev) => !prev);
+    } else {
+      setImpactData(null);
+      setIsImpactActive((prev) => !prev);
+    }
+  };
 
   const parseAsteroidListData = (asteroids) => {
     const parsedList = [];
@@ -35,10 +53,11 @@ const AsteroidList = () => {
           ),
           date: date,
           id: asteroid.id,
-          diameter:
-            (asteroid.estimated_diameter.meters.estimated_diameter_min +
-              asteroid.estimated_diameter.meters.estimated_diameter_max) /
-            2,
+          diameter: asteroid.estimated_diameter
+            ? (asteroid.estimated_diameter.meters.estimated_diameter_min +
+                asteroid.estimated_diameter.meters.estimated_diameter_max) /
+              2
+            : null,
         };
         parsedList.push(newAsteroidObj);
       });
@@ -94,29 +113,49 @@ const AsteroidList = () => {
     return <LoadingAnim />;
   }
 
+  if (isImpactActive && impactData) {
+    return (
+      <ImpactEnergyVisualizer
+        name={impactData.name}
+        diameter={impactData.diameter}
+        speedKmH={impactData.speed}
+        func={toggleIsImpactActive}
+      />
+    );
+  }
+
   return (
-    <main className="asteroid-list">
-      <div className="headings">
-        <h1>Upcoming Near-Earth Asteroids</h1>
-        <h3>Discover a curated list of asteroids approaching Earth</h3>
-        <div className="order-container">
-          <label htmlFor="order-select">Order by:</label>
+    <>
+      {!isImpactActive && <Navbar />}
+      <main className={`asteroid-list ${animateOut ? "animate-out" : ""}`}>
+        <div className="headings">
+          <h1>Upcoming Near-Earth Asteroids</h1>
+          <h3>Discover a curated list of asteroids approaching Earth</h3>
+          <div className="order-container">
+            <label htmlFor="order-select">Order by:</label>
 
-          <select name="pets" id="order-select" onChange={handleOrderChange}>
-            <option value="none">None</option>
-            <option value="diameter">Diameter</option>
-            <option value="speed">Speed</option>
-            <option value="missDistance">Miss Distance</option>
-          </select>
-        </div>{" "}
-      </div>
+            <select name="pets" id="order-select" onChange={handleOrderChange}>
+              <option value="none">None</option>
+              <option value="diameter">Diameter</option>
+              <option value="speed">Speed</option>
+              <option value="missDistance">Miss Distance</option>
+            </select>
+          </div>{" "}
+        </div>
 
-      <section className="asteroids-container">
-        {sortAsteroids(asteroids, orderBy).map((asteroid, i) => (
-          <CompactAsteroid asteroid={asteroid} orderBy={orderBy} key={i} />
-        ))}
-      </section>
-    </main>
+        <section className="asteroids-container">
+          {sortAsteroids(asteroids, orderBy).map((asteroid, i) => (
+            <CompactAsteroid
+              asteroid={asteroid}
+              orderBy={orderBy}
+              key={i}
+              index={i}
+              impactFunc={toggleIsImpactActive}
+            />
+          ))}
+        </section>
+      </main>
+    </>
   );
 };
 

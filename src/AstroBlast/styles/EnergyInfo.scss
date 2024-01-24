@@ -1,24 +1,92 @@
+@import "../../styles/partials/colors";
+
 .energy-info-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 2rem;
+
+
+    h4 {
+        color: $accent-text-color;
+        font-weight: 400;
+        font-size: 1.35rem;
+    }
 
     th,
     td {
-        border: 1px solid #ddd;
+        border: 1px solid rgba(255, 255, 255, 0.522);
         padding: 8px;
         text-align: left;
+        background-color: $background_color;
+        cursor: default;
     }
 
     th {
-        background-color: #171717;
+        background-color: #d6c1c1;
+    }
+
+    .label {
+        border: 1px solid $accent-text-color;
+
+    }
+
+    .value {
+        text-align: right;
     }
 
 
 
-    tr:hover {
-        background-color: #242323;
+    td:hover {
+        background-color: #f68f11;
+        color: black;
+    }
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+
+
+
+        .arrow-container {
+            font-size: 1.5rem;
+            display: flex;
+            flex-direction: row;
+            gap: 1rem;
+
+
+            svg {
+                animation: bob 1.5s 5;
+                animation-timing-function: ease-in-out;
+                color: $accent-text-color;
+
+                &:nth-child(1) {
+                    animation-delay: 30.2s;
+                }
+
+                &:nth-child(2) {
+                    animation-delay: 30.4s;
+                }
+
+                &:nth-child(3) {
+                    animation-delay: 30.6s;
+                }
+            }
+        }
+    }
+}
+
+@keyframes bob {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px); // Adjust the bobbing height as needed
     }
 }
