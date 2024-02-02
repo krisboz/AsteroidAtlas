@@ -4,15 +4,16 @@ import { MdCallMissed } from "react-icons/md";
 import CountUp from "react-countup";
 import parseDiameterForDisplay from "../helpers/parseDiameterForDisplay";
 import { GiMeteorImpact } from "react-icons/gi";
+import useHideCometShower from "../zustand/useHideCometShower";
 
 import { Link } from "react-router-dom";
 import "../styles/components/CompactAsteroid.scss";
 
 const CompactAsteroid = ({ asteroid, orderBy, impactFunc, index }) => {
   const { name, speed, date, hazard, id, missDistance, diameter } = asteroid;
-
+  const { toggleHideCometShower } = useHideCometShower();
   const handleImpactCallback = (event) => {
-    console.log(index);
+    toggleHideCometShower();
     impactFunc(event, index);
   };
 

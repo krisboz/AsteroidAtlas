@@ -1,0 +1,84 @@
+@import "../partials/colors";
+
+footer {
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: $accent-text-color;
+    color: $background-color;
+
+    width: 100%;
+    pointer-events: auto;
+
+
+
+    p {
+
+        font-size: 1.2rem;
+    }
+
+    .links-container {
+        display: flex;
+        place-content: center;
+        position: relative;
+
+        a {
+            display: flex;
+            place-content: center;
+            font-size: 2.3rem;
+            text-decoration: none;
+            color: $background-color;
+            border-radius: 150px;
+
+            &::after {
+                content: " /krisboz";
+                position: absolute;
+                color: $background-color;
+                font-size: 1.25rem;
+                left: 80%;
+                top: 15%;
+                width: 100px;
+                opacity: 0;
+                transition: .1s ease-in-out;
+                pointer-events: none;
+            }
+
+            &:hover {
+
+                &::after {
+                    display: block;
+                    opacity: 1;
+                    left: 120%;
+
+                }
+            }
+        }
+
+    }
+}
+
+@media (max-width:820px) {
+    footer {
+        justify-content: center;
+        gap: 15%;
+
+        p {
+            font-size: 1rem;
+
+
+        }
+
+        .links-container {
+            a {
+                svg {
+                    font-size: 1.5rem;
+                }
+
+                &::after {
+                    content: none;
+                }
+            }
+        }
+    }
+}

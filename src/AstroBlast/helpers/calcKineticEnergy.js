@@ -18,15 +18,6 @@ const calcKineticEnergy = (asteroidDiameter, relativeSpeedKmPerHour) => {
 
   const KEgJ = kineticEnergy / 1e9;
 
-  console.log({
-    density,
-    radius,
-    volume,
-    mass,
-    relativeSpeedKmH,
-    newEnergy: kineticEnergy / 1e9,
-  });
-
   return { kineticEnergy, KEgJ, mass };
 };
 

@@ -1,10 +1,10 @@
 .asteroid-list {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem;
     gap: 4rem;
-    animation: slideOut 1s ease-in-out;
 
 
     .headings {
@@ -22,10 +22,7 @@
     }
 }
 
-.animation-out {
-    animation: slideOut 1s ease-in-out;
 
-}
 
 @media (max-width:824px) {
 
@@ -63,10 +60,10 @@
 
 @keyframes slideOut {
     0% {
-        left: 0%;
+        left: -100%;
     }
 
     100% {
-        left: 100%;
+        left: 0;
     }
 }

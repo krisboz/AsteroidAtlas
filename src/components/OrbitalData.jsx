@@ -32,7 +32,9 @@ const OrbitalData = ({ data }) => {
               <Collapsible
                 trigger={[
                   `${parsePropertyName(el[0])}: `,
-                  <span className="collapsible-test">{el[1].toFixed(2)}</span>,
+                  <span className="collapsible-test" key={i * 2}>
+                    {el[1].toFixed(2)}
+                  </span>,
                 ]}
                 key={i}
               >

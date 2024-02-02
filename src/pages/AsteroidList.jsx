@@ -8,6 +8,7 @@ import sortAsteroids from "../helpers/sortAsteroids";
 import useAsteroidListStore from "../zustand/useAsteroidListStore";
 import useCurrentQueryStore from "../zustand/useCurrentQueryStore";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const AsteroidList = () => {
   const API_KEY = import.meta.env.VITE_NASA_API_KEY;
@@ -28,7 +29,6 @@ const AsteroidList = () => {
     if (index || index === 0) {
       const { speed, diameter, name } = asteroids[index];
       setImpactData({ speed, diameter, name });
-      console.log({ speed, diameter, name });
 
       setIsImpactActive((prev) => !prev);
     } else {
@@ -155,6 +155,7 @@ const AsteroidList = () => {
           ))}
         </section>
       </main>
+      <Footer />
     </>
   );
 };

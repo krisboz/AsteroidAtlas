@@ -22,3 +22,18 @@
 
     }
 }
+
+.distal-effects-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+
+    .distal-effects-display {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        padding-top: 3rem;
+    }
+}

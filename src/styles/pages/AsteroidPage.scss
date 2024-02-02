@@ -135,7 +135,6 @@
     .name-plate {
       padding: 1rem 0 1rem .5rem;
       display: flex;
-      flex-direction: column;
       align-items: start;
       justify-content: center;
       color: $new-text-color;
@@ -176,12 +175,7 @@
 
 
       .basic-info-data {
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        justify-content: space-evenly;
 
-        font-weight: 300;
 
         article>p {
           display: flex;
@@ -214,7 +208,6 @@
 
       .size-data {
         display: flex;
-        flex-direction: column;
         align-items: start;
         justify-content: space-evenly;
 

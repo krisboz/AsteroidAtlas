@@ -10,6 +10,7 @@ import useCurrentQueryStore from "./../zustand/useCurrentQueryStore";
 const DatePickerComponent = ({ func }) => {
   const { currQuery, setCurrQuery } = useCurrentQueryStore();
   const [startDate, setStartDate] = useState(new Date());
+  const [showEndDate, setShowEndDate] = useState(false);
   const [endDate, setEndDate] = useState(null);
   const maxDate = addDays(startDate, 7);
 
@@ -27,6 +28,10 @@ const DatePickerComponent = ({ func }) => {
     func();
   };
 
+  const handleOpenDateInput = () => {
+    setShowEndDate(true);
+  };
+
   return (
     <section id="date-picker-container">
       <div className="close-btn-cont">
@@ -36,18 +41,17 @@ const DatePickerComponent = ({ func }) => {
       </div>
       <h1>Discover Asteroids on Their Closest Approach to Earth</h1>
       <h3>
-        Explore asteroids set to pass nearest to Earth during your selected time
-        frame
+        Explore asteroids set to pass nearest to Earth during your selected day
       </h3>
+
       <p>
-        *If the end date is not specified, only asteroids for the start date
-        will be shown
+        *You can add an end date to see the asteroids in the specified time
+        frame
       </p>
-      <p>**Max end date is 7 days from the start date</p>
 
       <form className="dates-container" onSubmit={handleSubmit}>
         <div className="date-container">
-          <label htmlFor="date-start">Start</label>
+          <label htmlFor="date-start">Start Date</label>
           <DatePicker
             name="date-start"
             dateFormat="yyyy/MM/dd"
@@ -60,20 +64,26 @@ const DatePickerComponent = ({ func }) => {
           />
         </div>
 
-        <div className="date-container">
-          <label htmlFor="date-end">End (optional)</label>
-          <DatePicker
-            name="date-end"
-            dateFormat="yyyy/MM/dd"
-            selected={endDate}
-            onChange={(date) => setEndDate(date)}
-            selectsEnd
-            startDate={startDate}
-            endDate={endDate}
-            minDate={startDate}
-            maxDate={maxDate}
-          />
-        </div>
+        {showEndDate ? (
+          <div className="date-container">
+            <label htmlFor="date-end">End Date</label>
+            <DatePicker
+              name="date-end"
+              dateFormat="yyyy/MM/dd"
+              selected={endDate}
+              onChange={(date) => setEndDate(date)}
+              selectsEnd
+              startDate={startDate}
+              endDate={endDate}
+              minDate={startDate}
+              maxDate={maxDate}
+            />
+          </div>
+        ) : (
+          <button className="show-enddate-btn" onClick={handleOpenDateInput}>
+            Add End Date
+          </button>
+        )}
         <button className="cta-button" type="submit">
           Search
         </button>

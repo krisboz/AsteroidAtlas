@@ -8,8 +8,6 @@ const SingleEffect = ({ effectData }) => {
 
   const { name, description, icon } = effectData;
 
-  console.log(icon);
-
   return (
     <article className="effect-card">
       <div className="title-container">

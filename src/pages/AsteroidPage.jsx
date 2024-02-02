@@ -4,7 +4,7 @@ import "../styles/pages/AsteroidPage.scss";
 import { BsSpeedometer2 } from "react-icons/bs";
 import { MdCallMissed } from "react-icons/md";
 import parseAsteroidData from "../helpers/parseAsteroidData";
-import SizeComparator from "../components/SizeComparator";
+import SizeComparator from "../SizeComparator/SizeComparator";
 import parseDiameterForDisplay from "./../helpers/parseDiameterForDisplay";
 import OrbitalData from "../components/OrbitalData";
 import LoadingAnim from "../components/LoadingAnim";
@@ -13,10 +13,15 @@ import { IoArrowBackSharp } from "react-icons/io5";
 import { GiMeteorImpact } from "react-icons/gi";
 import useCurrentQueryStore from "../zustand/useCurrentQueryStore";
 import ImpactEnergyVisualizer from "../AstroBlast/ImpactEnergyVisualizer";
+import useHideCometShower from "../zustand/useHideCometShower";
+import { format } from "date-fns";
+
 const AsteroidPage = ({}) => {
   const [mapIsOpen, setMapIsOpen] = useState(false);
   const { id, date } = useParams();
   const { currQuery } = useCurrentQueryStore();
+  const { toggleHideCometShower } = useHideCometShower();
+
   const [asteroid, setAsteroid] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -29,7 +34,6 @@ const AsteroidPage = ({}) => {
         .then((response) => response.json())
         .then((data) => {
           setAsteroid(parseAsteroidData(data, date));
-          console.log("data", data);
           setLoading(false);
         })
         .catch((err) => {
@@ -43,13 +47,23 @@ const AsteroidPage = ({}) => {
   const navigate = useNavigate();
   const handleGoBack = () => {
     navigate(
-      `/asteroidlist/${currQuery.startdate}/${
-        currQuery.enddate ? currQuery.enddate : "none"
-      }`
+      `/asteroidlist/${
+        currQuery.startdate === undefined
+          ? format(new Date(), "yyyy-MM-dd")
+          : currQuery.startdate
+      }/${currQuery.enddate ? currQuery.enddate : "none"}`
     );
   };
-  const handleGoDestroy = () => {
-    setMapIsOpen((prev) => !prev);
+
+  //Two functions instead of a toggle to have the control to turn off
+  //the comet shower rendering
+  const openMap = () => {
+    toggleHideCometShower();
+    setMapIsOpen(true);
+  };
+
+  const closeMap = () => {
+    setMapIsOpen(false);
   };
 
   if (loading) {
@@ -66,7 +80,7 @@ const AsteroidPage = ({}) => {
         name={asteroid.name}
         diameter={(asteroid.diameter_min + asteroid.diameter_max) / 2}
         speedKmH={asteroid.velocity}
-        func={handleGoDestroy}
+        func={closeMap}
       />
     );
   }
@@ -79,7 +93,7 @@ const AsteroidPage = ({}) => {
             <button onClick={handleGoBack}>
               <IoArrowBackSharp /> to List
             </button>
-            <button onClick={handleGoDestroy}>
+            <button onClick={openMap}>
               Crash it into Earth <GiMeteorImpact />
             </button>
           </div>

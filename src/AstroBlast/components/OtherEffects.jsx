@@ -9,6 +9,7 @@ import {
 
 import SingleEffect from "./SingleEffect";
 import "../styles/OtherEffects.scss";
+import DistalEffects from "./DistalEffects";
 
 /**
    * EFFECTS
@@ -87,15 +88,7 @@ const OtherEffects = () => {
         <SingleEffect effectData={tsunamiObj} />
       </div>
 
-      <p className="distal-effects">
-        After those, a myriad of related, distal problems would emerge, things
-        like acid rain, global distribution of ejecta, global wild fires, global
-        darkness, greenhouse effects...
-      </p>
-      <p>
-        All in all it's safe to say we should feel lucky that impact frequency
-        is so low
-      </p>
+      <DistalEffects />
     </section>
   );
 };
