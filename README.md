@@ -33,6 +33,8 @@ It:
 - Allows switching the item the user is comparing the asteroid to
 - Allows to change anchor to see the comparisons from both points of view
 
+# Other features
+
 - **Date Selection:** Users can select a specific date to view the closest asteroids to Earth on that day.
 - **Compact Asteroid List:** Displays a list of asteroids with essential details like name, diameter, speed, and distance from Earth.
 - **Detailed View:** Clicking on an asteroid reveals more detailed information, including current speed, safety status, and max/min diameter values.
