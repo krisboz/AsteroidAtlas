@@ -11,28 +11,6 @@ import SingleEffect from "./SingleEffect";
 import "../styles/OtherEffects.scss";
 import DistalEffects from "./DistalEffects";
 
-/**
-   * EFFECTS
-   * Airbursts
-   * - when the incoming projectile breaks up into many smaller projectiles in the atmosphere
-   * Fireball
-   * -The Fireball is the first potentially damaging effect after an impact
-   * 
-   * Seismic Shaking
-   * aka earthquakes that spread from the point of impact which can be devastating
-   * 
-   * Ejecta Deposition
-   * During an impact a lot of material is kicked up which then falls back to the surface as a sort of a fragment blanket.
-   
-    Tsunamis, 
-    impact mechanics are a bit different when the impact target is the ocean, however such an impact can produce massive tsunamis.
-  
-
-   *
-   * that killed dinosaurs Chicxulub 20kps, 17km wide, 300ZJ en
-   * 72000.00kph
-   */
-
 const OtherEffects = () => {
   const tsunamiObj = {
     name: "Tsunamis",

@@ -9,6 +9,8 @@ import { MdOutlineAirplanemodeActive as PlaneIcon } from "react-icons/md";
  * all the styles are  changed inline to be able to change them programatically
  *
  * however that made me have to settle on this not so pretty code structure
+ *
+ * if anyone reading this has a better idea how to implement this don't be afraid to contact me :)
  */
 
 const returnIcon = (iconType, obj) => {

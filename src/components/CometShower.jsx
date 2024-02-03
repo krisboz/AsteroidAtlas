@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import "../styles/components/CometShower.scss";
 import useScrollStore from "../zustand/useScrollStore";
 import { useLocation } from "react-router-dom";
-import Footer from "../components/Footer";
 import useHideCometShower from "../zustand/useHideCometShower";
+
+//Background animation with stars, shooting stars and a parallax effect
+//Stars are just text shadows of the .star div
 
 const CometShower = () => {
   const { scrollY, setScrollY } = useScrollStore();
@@ -18,6 +20,11 @@ const CometShower = () => {
 
   let rafId;
 
+  //Using request animation frame for capturing the scroll value
+  //to hopefully make it more optimized
+  //It was good fun to try to figure out an acceptable way of doing it on my own
+
+  //Next time im probably just gonna use a library just for the fine control out of the box
   const requestRef = () => {
     rafId = requestAnimationFrame(() => {
       handleScroll();

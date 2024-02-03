@@ -9,6 +9,13 @@ import {
 import "leaflet/dist/leaflet.css";
 import "./styles/EnergyBlastMap.scss";
 
+/**
+ *
+ * Interactive Map
+ * Map displayed with the help of React-leaflet
+ * Onclick it paints a circle thats the size of the blast radius
+ */
+
 const EnergyBlastMap = ({ coords, blastRadius }) => {
   const [clickPosition, setClickPosition] = useState(null);
 
@@ -16,7 +23,8 @@ const EnergyBlastMap = ({ coords, blastRadius }) => {
     setClickPosition(e.latlng);
   };
 
-  //TODO Take it out into a new file and import Circle and Popup there
+  //For now only draw the blast radius circle, but it can handle more diameters and it returns
+  //a circle of a different color for each of the diameters
   const drawCircles = (...diameters) => {
     const colors = ["red", "green", "purple"];
     return diameters.map((diameter, index) => (

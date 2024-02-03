@@ -8,6 +8,31 @@ Visit the live demo of Asteroid Atlas [https://krisboz.github.io/asteroid-atlas/
 
 ## Features
 
+# Impact Simulator
+
+Calculates and displays the effects that the provided asteroid would cause on impact.
+
+Given the asteroids size and relative speed it:
+
+- **Calculates Mass:** assuming a spheroid shape and a density of 2000 kg/cm3
+- **Calculates Kinetic Energy:** using the speed of the asteroid as well as the calculated mass
+- **Calculates Blast Radius:** using yield scaling, in which the blast radius is assumed to be proportional to the cube root of the impact energy
+- **Draws the Blast Radius on a map:** based on user click and using react-leaflet for the interactive map
+- **Compares this asteroid to other famous events:** such as the Hiroshima bomb, or Chicxulub, the asteroid that destroyed the dinosaurs
+- **Displays other effects that would be caused by impact:** immediate effects (fireball, seismic shaking) as well as distal effects (acid rains, global darkness)
+
+All in all the feature does some real calculations and returns some real numbers, however it's still in a very primitive state, since an impact event is a wildly complicated affair and to approximate the effects more accurately one would have to build more advanced models to account for as much of the variables as possible.
+
+# Size comparator
+
+Displays size comparisons between the asteroid and other real-life objects.
+It:
+
+- Divides sizes of the compared objects to get the ratio
+- Translates that to CSS transforms to apply to icons
+- Allows switching the item the user is comparing the asteroid to
+- Allows to change anchor to see the comparisons from both points of view
+
 - **Date Selection:** Users can select a specific date to view the closest asteroids to Earth on that day.
 - **Compact Asteroid List:** Displays a list of asteroids with essential details like name, diameter, speed, and distance from Earth.
 - **Detailed View:** Clicking on an asteroid reveals more detailed information, including current speed, safety status, and max/min diameter values.
@@ -52,6 +77,7 @@ npm run test
 - Sass
 - Date-fns
 - React Router
+- React Leaflet
 - React-simple-typewriter
 - React-countup
 - React-icons

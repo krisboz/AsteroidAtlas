@@ -1,6 +1,10 @@
 import { getDaysInMonth } from "date-fns";
 import intervalToDuration from "date-fns/intervalToDuration";
 
+//Made to cycle days in the state with the asteroid data so we dont need to make more api calls
+//After making it I've realized that asteroids for just one day are more than plenty of rendered components
+//
+
 //Given two "YYYY-MM-dd" dates it returns an array of days between start and end respectively inclusive
 const cycleDays = (startdate, enddate) => {
   let count = 1;

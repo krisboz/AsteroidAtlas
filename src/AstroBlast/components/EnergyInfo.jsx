@@ -1,6 +1,6 @@
 import "../styles/EnergyInfo.scss";
 import { IoIosArrowDown } from "react-icons/io";
-const EnergyInfo = ({ name, size, energy, blastRadius, speed, mass }) => {
+const EnergyInfo = ({ name, size, speed, calculatedValues }) => {
   return (
     <article className="energy-info-container">
       <h4>{name}</h4>
@@ -25,7 +25,7 @@ const EnergyInfo = ({ name, size, energy, blastRadius, speed, mass }) => {
               Mass
             </td>
             <td className="value">
-              {Math.round(mass).toLocaleString("de-DE")} kg
+              {Math.round(calculatedValues.mass.t).toLocaleString("de-DE")} t
             </td>
           </tr>
 
@@ -34,7 +34,8 @@ const EnergyInfo = ({ name, size, energy, blastRadius, speed, mass }) => {
               Energy
             </td>
             <td className="value">
-              {Math.floor(energy).toLocaleString("de-DE")} gJ
+              {Math.floor(calculatedValues.energy.gj).toLocaleString("de-DE")}{" "}
+              gJ
             </td>
           </tr>
           <tr>
@@ -45,7 +46,10 @@ const EnergyInfo = ({ name, size, energy, blastRadius, speed, mass }) => {
               Blast radius
             </td>
             <td className="value">
-              {Math.round(blastRadius / 1000).toLocaleString("de-DE")} km
+              {Math.round(calculatedValues.blastRadius.km).toLocaleString(
+                "de-DE"
+              )}{" "}
+              km
             </td>
           </tr>
         </tbody>

@@ -2,10 +2,6 @@ import { WiTsunami } from "react-icons/wi";
 import "../styles/SingleEffect.scss";
 
 const SingleEffect = ({ effectData }) => {
-  //name
-  //description
-  //some sort of icon
-
   const { name, description, icon } = effectData;
 
   return (

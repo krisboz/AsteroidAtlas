@@ -2,7 +2,6 @@ import React from "react";
 
 const ImpactHeader = ({ diameter, name }) => {
   let atmosphereBurnUpText;
-  let followUp;
 
   switch (true) {
     case diameter < 25:

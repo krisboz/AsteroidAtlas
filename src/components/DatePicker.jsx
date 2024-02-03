@@ -7,6 +7,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { AiOutlineCloseSquare as Close } from "react-icons/ai";
 import useCurrentQueryStore from "./../zustand/useCurrentQueryStore";
 
+//Allows the user to pick start and/or end date for the asteroid query
+
 const DatePickerComponent = ({ func }) => {
   const { currQuery, setCurrQuery } = useCurrentQueryStore();
   const [startDate, setStartDate] = useState(new Date());

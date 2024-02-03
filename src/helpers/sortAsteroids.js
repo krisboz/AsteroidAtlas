@@ -1,3 +1,5 @@
+//Sorts an array of asteroids by categories
+
 const sortAsteroids = (arr, sortBy) => {
   if (sortBy === "none") {
     return arr;

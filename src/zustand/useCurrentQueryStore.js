@@ -1,5 +1,5 @@
 import { create } from "zustand";
-
+//Central state for saving API query values
 const useCurrentQueryStore = create((set) => ({
   currQuery: {},
   setCurrQuery: (data) =>

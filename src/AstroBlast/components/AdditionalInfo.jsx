@@ -1,7 +1,8 @@
 import "../styles/AdditionalInfo.scss";
 import OtherEffects from "./OtherEffects";
 
-const AdditionalInfo = ({ speed, mass, size, energy, tntEquivalent }) => {
+const AdditionalInfo = ({ speed, size, calculatedValues }) => {
+  //The asteroid that wiped out the dinosaurs
   const chicxulub = {
     name: "Chicxulub",
     diameter: 17_000,
@@ -9,8 +10,7 @@ const AdditionalInfo = ({ speed, mass, size, energy, tntEquivalent }) => {
     energy: 3e23,
   };
 
-  //TODO XD
-  const littleBoyEnergy = 15;
+  const hiroshimaEnergy = 0.015;
 
   //Returns percentage difference between a base and a new number
   const calcPercentageDiff = (newnum, basenum) => {
@@ -26,6 +26,13 @@ const AdditionalInfo = ({ speed, mass, size, energy, tntEquivalent }) => {
     }
   };
 
+  //Calculated differences between current asteroid and chicxulub
+  const chicDiff = {
+    size: calcPercentageDiff(size, chicxulub.diameter),
+    energy: calcPercentageDiff(calculatedValues.energy.gj, chicxulub.energy),
+    speed: calcPercentageDiff(speed, chicxulub.speed),
+  };
+
   return (
     <article className="additional-info">
       <div className="title-container">
@@ -35,14 +42,16 @@ const AdditionalInfo = ({ speed, mass, size, energy, tntEquivalent }) => {
         <div className="data-thing">
           <p>
             Energy released would be equal to{" "}
-            {Math.round(tntEquivalent / 1000000000000).toLocaleString("hr-HR")}{" "}
-            Mt of TNT
+            {Math.round(calculatedValues.tnt.mt).toLocaleString("hr-HR")} Mt of
+            TNT
           </p>
           <ul>
             <li>
               {" "}
-              That is {Math.floor(tntEquivalent / 1000000000000 / 0.015)} times
-              the Hiroshima bomb
+              That is {Math.floor(
+                calculatedValues.tnt.mt / hiroshimaEnergy
+              )}{" "}
+              times the Hiroshima bomb
             </li>
             <li>
               TNT Equivalent is calculated with the kinetic energy value from
@@ -52,47 +61,27 @@ const AdditionalInfo = ({ speed, mass, size, energy, tntEquivalent }) => {
         </div>
         <div className="data-thing">
           <p>
-            It would produce a seismic event at{" "}
-            {((tntEquivalent / 1000000000000) * 0.001).toFixed(2)} on the
-            Richter scale
+            An energy value like this one would equal to an earthquake at
+            {` ${((calculatedValues.tnt.mt / 100) * 0.001).toFixed(2)}`} on the
+            Richter scale.
           </p>
         </div>
         <div className="data-thing">
           <p>
-            It would be{" "}
-            {
-              calcPercentageDiff(energy / 1000000000, chicxulub.energy)
-                .percentage
-            }
+            It would be {chicDiff.energy.percentage}
             {"% "}
-            {calcPercentageDiff(energy / 1000000000, chicxulub.energy)
-              .quantity === "more"
-              ? "stronger"
-              : "weaker"}{" "}
-            than Chicxulub, the asteroid that wiped out the dinosaurs
+            {chicDiff.energy.quantity === "more" ? "stronger" : "weaker"} than
+            Chicxulub, the asteroid that wiped out the dinosaurs
           </p>
           <ul>
+            <li>It's size is {chicDiff.size.percentage}% less</li>
             <li>
-              It's size is{" "}
-              {calcPercentageDiff(size, chicxulub.diameter).percentage}% less
+              Traveling with {chicDiff.speed.percentage}%{" "}
+              {chicDiff.speed.quantity} speed
             </li>
             <li>
-              Traveling with{" "}
-              {calcPercentageDiff(speed, chicxulub.speed).percentage}%{" "}
-              {calcPercentageDiff(speed, chicxulub.speed).quantity} speed
-            </li>
-            <li>
-              Would impact with{" "}
-              {
-                calcPercentageDiff(energy / 1000000000, chicxulub.energy)
-                  .percentage
-              }
-              %{" "}
-              {
-                calcPercentageDiff(energy / 1000000000, chicxulub.energy)
-                  .quantity
-              }{" "}
-              energy
+              Would impact with {chicDiff.energy.percentage}%{" "}
+              {chicDiff.energy.quantity} energy
             </li>
           </ul>
         </div>

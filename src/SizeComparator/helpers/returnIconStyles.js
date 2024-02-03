@@ -1,5 +1,6 @@
+//Translates scale values into usable css lines that we apply to the svgs inline
 const returnIconStyles = (anchorPoint, comparedTo, scales, iconType) => {
-  //Translates icons when the scales get really big
+  //Translates icons when the scale differences get really big
   const returnTransformValue = (scale) => {
     if (
       anchorPoint === "asteroid" &&

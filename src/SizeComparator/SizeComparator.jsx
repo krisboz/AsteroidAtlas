@@ -3,6 +3,9 @@ import calcScale from "../helpers/calcScale";
 import "../styles/components/SizeComparator.scss";
 import returnIcon from "./helpers/returnIcon";
 
+//Size comparator that compares svg icons of different elements
+//that all have the correct relative dimensions and size ratios between them
+
 const SizeComparator = ({ asteroidSize }) => {
   //Determine if user is in mobile or desktop view
   const [mobile, setMobile] = useState(window.innerWidth <= 820);

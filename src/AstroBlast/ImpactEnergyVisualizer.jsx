@@ -1,6 +1,5 @@
 import EnergyBlastMap from "./EnergyBlastMap";
-import calcKineticEnergy from "./helpers/calcKineticEnergy";
-import calcBlastRadius from "./helpers/calcBlastRadius";
+import calcImpactValues from "./helpers/calcImpactValues";
 import "./styles/ImpactEnergyVisualizer.scss";
 import EnergyInfo from "./components/EnergyInfo";
 import { IoArrowBackSharp } from "react-icons/io5";
@@ -12,20 +11,17 @@ import { MdKeyboardArrowUp as ArrowUp } from "react-icons/md";
 import useScrollStore from "../zustand/useScrollStore";
 import { useEffect } from "react";
 
+//Takes asteroid data and returns different effects that would happen in case of an impact
+
 const ImpactEnergyVisualizer = ({ name, diameter, speedKmH, func }) => {
+  //Hiding the background animation, hopefully to make it more optimized since this component also
+  //has a lot of elements and some animations
   const { toggleHideCometShower } = useHideCometShower();
 
-  //it would power a city of 1.000.000 people for ... years
-  //
+  //Reset to top of page because its not a different route than the component that links to it
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-  /**
-   * Remember, this tool calculates asteroids impact energy solely based
-   *  on their relative speed and size. It doesn't consider other factors
-   *  or illustrate the actual consequences of even seemingly small blast radii.
-   *  According to NASA, asteroids larger than 2 km could have worldwide effects.
-   */
 
   const { pathname } = useLocation();
   const { scrollY } = useScrollStore();
@@ -39,8 +35,8 @@ const ImpactEnergyVisualizer = ({ name, diameter, speedKmH, func }) => {
   const handleGoTop = () => {
     window.scrollTo(0, 0);
   };
-  const energyValues = calcKineticEnergy(diameter, speedKmH);
-  const tntValues = calcBlastRadius(energyValues.kineticEnergy);
+
+  const calculatedValues = calcImpactValues(diameter, speedKmH);
 
   return (
     <div className="astro-blast-screen">
@@ -55,23 +51,19 @@ const ImpactEnergyVisualizer = ({ name, diameter, speedKmH, func }) => {
       <ImpactHeader diameter={diameter} name={name} />
 
       <div className="map-flex-container">
-        <EnergyBlastMap blastRadius={tntValues.blastRadius / 2} />
+        <EnergyBlastMap blastRadius={calculatedValues.blastRadius.m / 2} />
 
         <EnergyInfo
           name={name}
           size={diameter}
-          energy={energyValues.KEgJ}
-          blastRadius={tntValues.blastRadius}
           speed={speedKmH}
-          mass={energyValues.mass}
+          calculatedValues={calculatedValues}
         />
       </div>
       <AdditionalInfo
         speed={speedKmH}
-        mass={energyValues.mass}
-        energy={energyValues.kineticEnergy}
-        tntEquivalent={tntValues.tntEquivalent}
         size={diameter}
+        calculatedValues={calculatedValues}
       />
 
       {scrollY > 400 && (
