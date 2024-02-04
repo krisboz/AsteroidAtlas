@@ -25,6 +25,8 @@
                 align-items: center;
                 justify-content: center;
                 height: fit-content;
+                background-color: $bg-green;
+
             }
 
             &:nth-child(2) {
@@ -83,10 +85,7 @@
 
             .data-thing {
 
-                p {
-                    background-color: $bg-green;
 
-                }
 
                 &:nth-child(2) {
                     margin-top: 0%;

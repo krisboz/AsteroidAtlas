@@ -42,8 +42,12 @@ const AdditionalInfo = ({ speed, size, calculatedValues }) => {
         <div className="data-thing">
           <p>
             Energy released would be equal to{" "}
-            {Math.round(calculatedValues.tnt.mt).toLocaleString("hr-HR")} Mt of
-            TNT
+            {calculatedValues.tnt.mt > 1
+              ? `${Math.round(calculatedValues.tnt.mt).toLocaleString(
+                  "hr-HR"
+                )} megatonnes `
+              : `${Math.round(calculatedValues.tnt.t)} tonnes `}
+            of TNT
           </p>
           <ul>
             <li>
@@ -61,10 +65,17 @@ const AdditionalInfo = ({ speed, size, calculatedValues }) => {
         </div>
         <div className="data-thing">
           <p>
-            An energy value like this one would equal to an earthquake at
-            {` ${((calculatedValues.tnt.mt / 100) * 0.001).toFixed(2)}`} on the
-            Richter scale.
+            An energy value like this one would equal to an earthquake at {""}
+            {calculatedValues.richterScale.toFixed(3)} on the Richter scale.
           </p>
+
+          <ul>
+            <li>Earthquakes are a result of enormous amounts of energy</li>
+            <li>
+              Because of that it may seem that a large impact produces very
+              little seismic activity
+            </li>
+          </ul>
         </div>
         <div className="data-thing">
           <p>

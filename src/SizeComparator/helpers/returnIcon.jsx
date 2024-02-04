@@ -16,7 +16,7 @@ import { MdOutlineAirplanemodeActive as PlaneIcon } from "react-icons/md";
 const returnIcon = (iconType, obj) => {
   const { anchorPoint, comparedTo, scales, mobile } = obj;
 
-  const fixedAsteroidSize = mobile ? 350 : 450;
+  const fixedAsteroidSize = mobile ? 350 : 400;
 
   const icons = {
     asteroid: (
@@ -24,6 +24,7 @@ const returnIcon = (iconType, obj) => {
         style={{
           height: `${fixedAsteroidSize}px`,
           width: `${fixedAsteroidSize}px`,
+
           transform: returnIconStyles(
             anchorPoint,
             comparedTo,
@@ -51,6 +52,7 @@ const returnIcon = (iconType, obj) => {
             scales,
             iconType
           ),
+
           transition: ".3s ease-in-out",
         }}
       >

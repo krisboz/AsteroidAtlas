@@ -20,6 +20,12 @@ const calcBlastRadius = (energy) => {
   };
 };
 
+function calculateRichterScaleMagnitude(energyJoules) {
+  const E0 = Math.pow(10, 4.8); // Reference energy
+  const R = (2 / 3) * Math.log10(energyJoules / E0);
+  return R;
+}
+
 //Calculates the asteroids mass, impact energy, subsequent blast radius, in multiple measurement units
 const calcImpactValues = (asteroidDiameter, relativeSpeedKmPerHour) => {
   const density = 2000; // kg/m³ (chosen as the density of an average rocky asteroid)
@@ -34,6 +40,8 @@ const calcImpactValues = (asteroidDiameter, relativeSpeedKmPerHour) => {
     (1 / 2) * (massKg * Math.pow(relativeSpeedMetersPerSecond, 2)); //joules
 
   const blastRadiusResult = calcBlastRadius(kineticEnergy);
+
+  const richterScale = calculateRichterScaleMagnitude(kineticEnergy);
 
   const result = {
     mass: {
@@ -51,7 +59,9 @@ const calcImpactValues = (asteroidDiameter, relativeSpeedKmPerHour) => {
     tnt: {
       kg: blastRadiusResult.tnt.kg,
       mt: blastRadiusResult.tnt.mt,
+      t: blastRadiusResult.tnt.kg / 1000,
     },
+    richterScale,
   };
 
   return result;
