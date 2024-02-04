@@ -26,6 +26,7 @@
     "react-router-dom": "^6.17.0",
     "react-simple-typewriter": "^5.0.1",
     "sass": "^1.69.4",
+    "vite-plugin-svgr": "^4.2.0",
     "vitest": "^0.34.6",
     "zustand": "^4.4.4"
   },
