@@ -50,7 +50,7 @@ const ImpactEnergyVisualizer = ({ name, diameter, speedKmH, func }) => {
 
       <ImpactHeader diameter={diameter} name={name} />
 
-      <div className="map-flex-container">
+      <div className="map-pos-container">
         <EnergyBlastMap blastRadius={calculatedValues.blastRadius.m / 2} />
 
         <EnergyInfo

@@ -7,8 +7,6 @@ import returnIcon from "./helpers/returnIcon";
 //that all have the correct relative dimensions and size ratios between them
 
 const SizeComparator = ({ asteroidSize }) => {
-  //Determine if user is in mobile or desktop view
-  const [mobile, setMobile] = useState(window.innerWidth <= 820);
   const scales = calcScale(asteroidSize);
   //What the asteroid is compared to
   const [comparedTo, setComparedTo] = useState("human");
@@ -20,18 +18,7 @@ const SizeComparator = ({ asteroidSize }) => {
     setAnchorPoint(event.target.value);
   };
 
-  const handleWindowSizeChange = () => {
-    setMobile(window.innerWidth <= 820);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
-  }, []);
-
-  const iconDataObj = { anchorPoint, comparedTo, scales, mobile };
+  const iconDataObj = { anchorPoint, comparedTo, scales };
 
   return (
     <div>

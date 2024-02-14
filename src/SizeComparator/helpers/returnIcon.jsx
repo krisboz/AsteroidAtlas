@@ -1,6 +1,7 @@
 import { GiAsteroid, GiSpermWhale } from "react-icons/gi";
 import returnIconStyles from "./returnIconStyles";
 import { MdOutlineAirplanemodeActive as PlaneIcon } from "react-icons/md";
+import useIsMobileView from "../../helpers/hooks/useIsMobileView";
 /**
  *
  * Given the icon name it returns the icon
@@ -10,13 +11,14 @@ import { MdOutlineAirplanemodeActive as PlaneIcon } from "react-icons/md";
  *
  * however that made me have to settle on this not so pretty code structure
  *
- * if anyone reading this has a better idea how to implement this don't be afraid to contact me :)
+ * if anyone reading this has a better idea how to implement please let me know :)
  */
 
 const returnIcon = (iconType, obj) => {
-  const { anchorPoint, comparedTo, scales, mobile } = obj;
+  const isMobileView = useIsMobileView();
+  const { anchorPoint, comparedTo, scales } = obj;
 
-  const fixedAsteroidSize = mobile ? 350 : 400;
+  const fixedAsteroidSize = isMobileView ? 350 : 400;
 
   const icons = {
     asteroid: (

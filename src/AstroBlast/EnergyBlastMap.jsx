@@ -8,6 +8,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./styles/EnergyBlastMap.scss";
+import useIsMobileView from "../helpers/hooks/useIsMobileView";
 
 /**
  *
@@ -17,6 +18,7 @@ import "./styles/EnergyBlastMap.scss";
  */
 
 const EnergyBlastMap = ({ coords, blastRadius }) => {
+  const isMobileView = useIsMobileView();
   const [clickPosition, setClickPosition] = useState(null);
 
   const handleMapClick = (e) => {
@@ -32,7 +34,7 @@ const EnergyBlastMap = ({ coords, blastRadius }) => {
         key={index}
         center={[clickPosition.lat, clickPosition.lng]}
         radius={diameter}
-        color={colors[index % colors.length]} // Use modulo to cycle through colors
+        color={colors[index % colors.length]} // Use remainder operator to cycle through colors
       >
         <Popup>
           This is a circle with a radius of {diameter.toFixed()} meters.
@@ -44,7 +46,7 @@ const EnergyBlastMap = ({ coords, blastRadius }) => {
   return (
     <div
       className="map-style-container"
-      style={{ height: "450px", paddingLeft: "5%" }}
+      style={{ height: "450px", paddingLeft: `${isMobileView ? "0" : "5%"}` }}
     >
       <div className="close-container">
         <p>
