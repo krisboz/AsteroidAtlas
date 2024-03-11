@@ -12,7 +12,7 @@ import CountUp from "react-countup";
 import { IoArrowBackSharp } from "react-icons/io5";
 import { GiMeteorImpact } from "react-icons/gi";
 import useCurrentQueryStore from "../zustand/useCurrentQueryStore";
-import ImpactEnergyVisualizer from "../AstroBlast/ImpactEnergyVisualizer";
+import ImpactEnergyVisualizer from "../impact-sim/ImpactEnergyVisualizer";
 import useHideCometShower from "../zustand/useHideCometShower";
 import { format } from "date-fns";
 

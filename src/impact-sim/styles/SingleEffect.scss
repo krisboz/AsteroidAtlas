@@ -3,7 +3,7 @@
 .effect-card {
     border: 1px solid $accent-text-color;
     margin: 1rem;
-    width: 75%;
+    min-width: 50rem;
 
     .title-container {
         display: flex;
@@ -93,14 +93,7 @@
     .effect-card {
         border: 1px solid $accent-text-color;
         margin: 1rem;
-        width: 85%;
-        max-width: none;
-
-
-
-
-
-
+        min-width: 25rem;
 
 
         .bottom-separator {

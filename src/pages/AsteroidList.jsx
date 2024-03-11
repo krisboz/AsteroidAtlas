@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import CompactAsteroid from "../components/CompactAsteroid";
-import ImpactEnergyVisualizer from "../AstroBlast/ImpactEnergyVisualizer";
+import ImpactEnergyVisualizer from "../impact-sim/ImpactEnergyVisualizer";
 import LoadingAnim from "../components/LoadingAnim";
 import "../styles/pages/AsteroidList.scss";
 import sortAsteroids from "../helpers/sortAsteroids";
@@ -9,6 +9,7 @@ import useAsteroidListStore from "../zustand/useAsteroidListStore";
 import useCurrentQueryStore from "../zustand/useCurrentQueryStore";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { fetchAsteroidData } from "../services/fetchAsteroidData";
 
 const AsteroidList = () => {
   const API_KEY = import.meta.env.VITE_NASA_API_KEY;
@@ -20,7 +21,6 @@ const AsteroidList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [isImpactActive, setIsImpactActive] = useState(false);
-  const [animateOut, setAnimateOut] = useState(false);
   const [asteroids, setAsteroids] = useState(null);
   const [orderBy, setOrderBy] = useState("none");
   const [impactData, setImpactData] = useState(null);
@@ -78,6 +78,7 @@ const AsteroidList = () => {
       return;
     } else {
       resetAsteroidListData();
+      const asteroidData = fetchAsteroidData(startdate, enddate);
       fetch(
         `https://api.nasa.gov/neo/rest/v1/feed?start_date=${startdate}&end_date=${
           enddate !== "none" ? enddate : startdate
@@ -127,7 +128,7 @@ const AsteroidList = () => {
   return (
     <>
       {!isImpactActive && <Navbar />}
-      <main className={`asteroid-list ${animateOut ? "animate-out" : ""}`}>
+      <main className={`asteroid-list`}>
         <div className="headings">
           <h1>Upcoming Near-Earth Asteroids</h1>
           <h3>Discover a curated list of asteroids approaching Earth</h3>

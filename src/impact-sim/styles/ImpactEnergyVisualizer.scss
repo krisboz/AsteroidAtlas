@@ -74,8 +74,6 @@
     }
 
     .go-top-btn {
-        border: none;
-        background: none;
         color: $accent-text-color;
         font-size: 3rem;
         display: flex;
@@ -90,6 +88,16 @@
         cursor: pointer;
         transition: .3s ease-in-out;
         animation: popIn .3s ease-in-out;
+        /* From https://css.glass */
+        background: rgba(13, 96, 8, 0.23);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(13, 96, 8, 1);
+
+        &:hover {
+            border: 1px solid $accent-text-color;
+        }
     }
 }
 

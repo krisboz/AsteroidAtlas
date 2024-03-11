@@ -52,7 +52,7 @@ const CometShower = () => {
           className="meteor-shower-container"
           style={{
             willChange: "transform",
-            transform: `translate3d(0px, ${-scrollY / 3}px, 0px)`,
+            transform: `translate3d(0px, ${-scrollY / 5}px, 0px)`,
             height: `${
               limitHeight ? "100%" : `${document.body.scrollHeight + 500}px`
             }`,

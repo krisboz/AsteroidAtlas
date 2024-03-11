@@ -1,24 +1,25 @@
 import { GiAsteroid, GiSpermWhale } from "react-icons/gi";
 import returnIconStyles from "./returnIconStyles";
 import { MdOutlineAirplanemodeActive as PlaneIcon } from "react-icons/md";
-import useIsMobileView from "../../helpers/hooks/useIsMobileView";
+import useMobileView from "../../helpers/hooks/useMobileView";
 /**
  *
  * Given the icon name it returns the icon
  * the "obj" argument accepts an object with all the properties necessary for calculating the icons style
  *
- * all the styles are  changed inline to be able to change them programatically
+ * all the styles are  changed inline to be able to change them dynamically using ./returnIconStyles
  *
- * however that made me have to settle on this not so pretty code structure
+ * however that made me have to settle on this monstrosity
  *
  * if anyone reading this has a better idea how to implement please let me know :)
  */
 
 const returnIcon = (iconType, obj) => {
-  const isMobileView = useIsMobileView();
+  const view = useMobileView();
   const { anchorPoint, comparedTo, scales } = obj;
+  console.log(view.isMobile);
 
-  const fixedAsteroidSize = isMobileView ? 350 : 400;
+  const fixedAsteroidSize = view.isMobile ? 200 : 400;
 
   const icons = {
     asteroid: (

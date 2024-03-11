@@ -1,5 +1,5 @@
-$n: 10; // number of meteors
-$s: 150; // number of stars
+$n: 8; // number of meteors
+$s: 130; // number of stars
 //translate3d(0px, -34.8262px, 0px)
 
 .meteor-shower-container {
@@ -33,9 +33,9 @@ $shadow: (
 }
 
 @for $i from 1 through $n {
-    $v: calc(random(150) + 9); // left
+    $v: calc(random(90) + 9); // left
     $h: calc(random(50) + 50); // top
-    $d: calc(random(550)/10 + 3); // seconds
+    $d: calc(random(600)/10 + 3); // seconds
 
     .meteor-#{$i} {
         position: absolute;

@@ -8,7 +8,7 @@ import {
 } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./styles/EnergyBlastMap.scss";
-import useIsMobileView from "../helpers/hooks/useIsMobileView";
+import useMobileView from "../helpers/hooks/useMobileView";
 
 /**
  *
@@ -18,7 +18,7 @@ import useIsMobileView from "../helpers/hooks/useIsMobileView";
  */
 
 const EnergyBlastMap = ({ coords, blastRadius }) => {
-  const isMobileView = useIsMobileView();
+  const mobileView = useMobileView();
   const [clickPosition, setClickPosition] = useState(null);
 
   const handleMapClick = (e) => {
@@ -46,7 +46,10 @@ const EnergyBlastMap = ({ coords, blastRadius }) => {
   return (
     <div
       className="map-style-container"
-      style={{ height: "450px", paddingLeft: `${isMobileView ? "0" : "5%"}` }}
+      style={{
+        height: "450px",
+        paddingLeft: `${mobileView.is ? "0" : "5%"}`,
+      }}
     >
       <div className="close-container">
         <p>

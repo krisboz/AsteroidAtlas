@@ -1,0 +1,39 @@
+@import "../../styles/partials/colors";
+
+.other-effects {
+    margin-top: 2rem;
+
+    .title-container {
+        padding: 1rem;
+    }
+
+    p {
+        padding: 1rem;
+    }
+
+    .effects-container {
+        display: flex;
+        overflow-x: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: $accent-text-color;
+        gap: 5rem;
+        width: 100%;
+
+    }
+}
+
+@media (max-width:820px) {
+    .other-effects {
+
+        .effects-container {
+            display: flex;
+            overflow-x: scroll;
+            scrollbar-width: thin;
+            gap: 5rem;
+            width: 100vw;
+
+            .effect-card {}
+        }
+    }
+
+}

@@ -8,7 +8,6 @@ import "./App.scss";
 function App() {
   const { pathname } = useLocation();
 
-  //Each time the route resets scroll to top
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);

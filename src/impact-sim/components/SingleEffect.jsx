@@ -3,7 +3,7 @@ import "../styles/SingleEffect.scss";
 
 const SingleEffect = ({ effectData }) => {
   const { name, description, icon } = effectData;
-
+  //effect-card max-width // min width
   return (
     <article className="effect-card">
       <div className="title-container">
